@@ -1,0 +1,17 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdftex 2014.8.8)  8 AUG 2014 04:16
+entering extended mode
+**C:/Users/Karsten/Dropbox/stat104DennisAndKarsten/CurriculumStudy/DraftTISE/ti
+se_style.cls
+
+(C:/Users/Karsten/Dropbox/stat104DennisAndKarsten/CurriculumStudy/DraftTISE/tis
+e_style.cls
+! Undefined control sequence.
+l.10 \NeedsTeXFormat
+                    {LaTeX2e}
+? 
+! Emergency stop.
+l.10 \NeedsTeXFormat
+                    {LaTeX2e}
+End of file on the terminal!
+
+!  ==> Fatal error occurred, no output PDF file produced!
