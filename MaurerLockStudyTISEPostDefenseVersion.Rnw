@@ -361,18 +361,18 @@ Both curricula groups were required to learn how to conduct normal-based inferen
 The bivariate MANCOVA models used for these two analyses are parameterized as 
 
 \begin{eqnarray}\label{eq:mancova}
-y_{ik} = \tau_{k} \mathbbm{1}_{\{i \in T\}} + \beta_{0k} + \sum_{p=1}^{P}x_{ip}\beta_{pk} + \epsilon_{ik},
+y_{i\ell} = \tau_{\ell} \mathbbm{1}_{\{i \in T\}} + \beta_{\ell 0} + \sum_{p=1}^{P}x_{ip}\beta_{\ell p} + \epsilon_{i\ell},
 \end{eqnarray}
 where 
 
 \begin{tabular}{lp{5in}}
-$y_{ik}$ &  is the $k^{th}$ response ($k \in \left\{1,2\right\}$) from  student $i$, $ 1 \le i \le n$,\\
-$\tau_{k}$ & is the treatment effect of the simulation-based curriculum on response $k$, and \\
+$y_{i\ell}$ &  is the $\ell^{th}$ response ($\ell \in \left\{1,2\right\}$) from  student $i$, $ 1 \le i \le n$,\\
+$\tau_{\ell}$ & is the treatment effect of the simulation-based curriculum on response $\ell$, and \\
 $\mathbbm{1}_{\{i \in T\}}$ & is an indicator function, that is one, if student $i$ is in the treatment group, and zero otherwise.\\
-$\beta_{0k}$ & is the common intercept for response $k$, and \\
-$\beta_{kp}$, & $1 \le p \le P$ are the model coefficients of the $P$ covariates. \\
+$\beta_{\ell 0}$ & is the common intercept for response $\ell$, and \\
+$\beta_{\ell p}$, & $1 \le p \le P$ are the model coefficients of the $P$ covariates. \\
 $x_{ip}$ & is the $p^{th}$ pre-treatment covariate score of student $i$, and\\
-$\epsilon}_{ik}$ & is the error for the $k^{th}$ response from the $i^{th}$ student. 
+$\epsilon}_{i\ell}$ & is the error for the $\ell ^{th}$ response from the $i^{th}$ student. 
 \end{tabular}
 
 We assume that error pairs are independent and identically distributed:
@@ -412,25 +412,7 @@ We assume that error pairs are independent and identically distributed:
 %  \right)$,
 % \end{center}
 
-With this parameterization, it is clear that the underlying structure of the MANCOVA model is a multivariate multiple linear regression that can include categorical and continuous covariates. Note that the paired error terms from each student are correlated but are specified as independent between students. The assumption of independence between student response scores is understood to be unrealistic for students from the same class and same test.  However it is necessary in order to maintain a parsimonious model and the violation is assumed to be minimized by the fact that the students were tested individually in a controlled exam environment. 
-  
-The repercussions of violating the assumption of independence between student responses were explored through a simulation study. The generative model for the simulations was adapted from the MANCOVA model~(\ref{eq:mancova}) with no treatment effects, i.e.\ $\tau_{1} =  \tau_{2} = 0$. Additionally, the between-student covariance was controlled as
-
-\[
-\Cov[\epsilon_{ik}, \epsilon_{j\ell}] = \eta \sigma_{k\ell}^2, \ \ \ \text{ where } \eta \in [0,1]  \text{ for all } i \ne j, \text{ and } k,\ell \in \{1,2\}
-\]
-where $\eta$ scales the covariance between all students uniformly and is used to adjust the violation of independence. Note that for $\eta=0$ there is no violation of independence.
-
-
-Bivariate responses were simulated by adding randomly generated errors from with the variance structure described above to a fixed response structure. The simulated bivariate responses were fitted using the MANCOVA model~(\ref{eq:mancova}) assuming independence between students. Simulations were conducted 25,000 times for each $\eta \in \{0.0,0.1,0.2,0.3,0.4,0.5\}$. 
-
-Generally, the simulation results indicate, that with an increasing dependence between the responses (i.e.\ with an increase in $\eta$) standard errors for parameter estimates decrease in value. However, the observed parameter estimates remained unbiased at all levels of $\eta$.
-%It was also found that estimated parameters remain unbiased and have decreasing variance as $\eta$ increases.
-The simulation results indicate that under the generative model the Type I error rates -- for univariate and bivariate tests for curriculum treatment effect -- remain very stable around the nominal $\alpha = 0.05$ level as the independence violation increased.  
-
-We further simulated under a generative model which allowed the responses from students of the same classroom to have higher covariance than those from students of different classrooms. When disparity in class based response covariances was increased, the type I error rate (i.e. \ incorrectly attributing the difference in responses to the treatment which is confounded with the classroom) also increased. Note that this covariance disparity would need to be attributed to non-treatment related factors because the generative model is designed to carry no curriculum treatment effect. We believe that the alternation of instruction, identical curricula administered with all students in the same room in weeks 1 to 8, and careful pedagogical preparation has minimized all non-treatment related differences that may have arisen due to the physically different classrooms in which the curriculum treatments were administered.  
-
-Therefore, the simulation results alleviate concerns over violating the assumption of independence when student responses are generally correlated. However, if the covariance structure for responses is aligned with classrooms the error rates increase due to confounding with the treatment and we must trust that the experimental design has minimized this possibility. Full details of the simulation study may be found in Appendix~\ref{simappend}.
+With this parameterization, it is clear that the underlying structure of the MANCOVA model is a multivariate multiple linear regression that can include categorical and continuous covariates. Note that the paired error terms from each student are correlated but are specified as independent between students. The assumption of independence between student response scores is understood to be unrealistic for students from the same class. \km{The repercussions of violating the assumption of independence between student responses will be explored through a simulation study in Section~\ref{SimStudy} following the analysis.}
 
 %-----------------------------------------------------
 \subsection{Modeling ARTIST Outcomes}
@@ -656,7 +638,123 @@ Treatment & \Sexpr{sprintf("%.4f",round(summarytab1[3,2],4))} & \Sexpr{sprintf("
 
 \end{table}
 
+%-----------------------------------------------------
+\subsection{Model Assessment}
+\label{SimStudy}
 
+\km{The assumption of independence of errors between students in the bivariate MANCOVA models specified in  (\ref{eq:mancova}), which we employed in Sections~\ref{ArtistModel}~and~\ref{AppliedModel} , is made in order to fit models with parsimonious variance structures. The assumption of independence between students is very likely violated in practice, because learning outcomes for students attending the same class with the same instructors in the same semester will likely be related. It is therefore important to assess the consequences this violation has on the results of the MANCOVA models fit in the paper.  We wish to identify the effect of the violation on the Type 1 error rates in the tests for curriculum effects on the learning outcomes. We elected to explore the consequences through a simulation study wherein the assumption of independence was knowingly violated and the effects on errors rates were recorded.}
+
+\km{We chose the ARTIST Model (\ref{eq:mancova}) from Sections~\ref{ArtistModel} as the basis for our simulation study. Under the assumption of independence in the errors between students, we found weak evidence of a curriculum effect on the bivariate learning outcomes based on Pillai's $\lambda$. Further inspection of the individual responses using t-tests revealed evidence of a significant effect of the curriculum on confidence interval related outcomes, but no evidence of a curriculum effect on hypothesis test related outcomes. In order to assess the trustworthiness of the results, we must first know how a violation of the assumption of independence would impact the Type 1 error rates for these tests. We simulate responses from a generative model where the curriculum effect on learning outcomes is non-existent, i.e.\ $\tau_{1} =  \tau_{2} = 0$, and the assumption of independence between students is violated to differing degrees. We then track the Type 1 error rates for test of curriculum effects when the ARTIST model is fit to the simulated responses. }
+
+
+\km{ The generative model for the simulations was adapted from the MANCOVA model~(\ref{eq:mancova}) which adds random effects to violate the independence between students. The generative model includes fixed effects for lab 5 and midterm scores and random effects for responses, lab sections and lecture section. Recall that responses are nested within students, students are nested within lab sections, and labs are nested within lecture sections. Thus the generative model is defined as, }
+
+\km{
+\begin{eqnarray}\label{eq:simgenerative}
+y_{ijk\ell} = \beta_{0k} + x_{ijk1}\beta_{k1} + x_{ijk2}\beta_{k2} + \eta_{\ell} + \gamma_{k\ell} + \delta_{jk\ell} + \epsilon_{ijk\ell},
+\end{eqnarray}
+%
+where 
+
+\begin{tabular}{lp{5in}}
+$y_{ijkl}$ &  is the $\ell^{th}$ response from student $i$ who is in lab group $j$ and classroom $k$,  \\
+ & where $i \in \left\{1,\dots,n\right\}$, $j \in \left\{1,2,3,4\right\}$, $k \in \left\{1,2\right\}$, and $\ell \in \left\{1,2\right\}$ \\
+$\beta_{\ell 0}$ & is the common intercept for response $\ell$,  \\
+$\beta_{\ell 1}$, & is the model coefficients for lab 5 score for response $\ell$, \\
+$\beta_{\ell 2}$, & is the model coefficients for midterm score for response $\ell$, \\
+$x_{i1}$, & is the lab 5 score for student $i$, \\
+$x_{i2}$, & is the midterm score for student $i$, \\
+$\eta_{\ell}$ & is the random effect for the $\ell ^{th}$ response common to all students.\\ 
+$\gamma_{k\ell}$ & is the random effect for lecture section $k$ on the $\ell ^{th}$ response. \\
+$\delta_{jk\ell}$ & is the random effect for lab section $j$ on the $\ell ^{th}$ response. \\
+$\epsilon_{ijk\ell}$ & is the error term for the $\ell ^{th}$ response from the $i^{th}$ student. \\
+\end{tabular}
+}
+
+\km{
+The distributions for the random effects and error terms is parameterized such that
+\[
+\vec{\epsilon}_{ijk} = 
+\begin{bmatrix}
+  \epsilon_{ijk1} \\ \epsilon_{ijk2} 
+ \end{bmatrix}  
+ \distas{iid} \text{MVN} \left( 
+ \begin{bmatrix}
+  0 \\ 0 
+ \end{bmatrix},
+ \Sigma = \begin{bmatrix}
+  \sigma_{11}^2 & \sigma_{12}^2 \\ 
+  \sigma_{21}^2 & \sigma_{22}^2
+ \end{bmatrix} 
+ \right)
+\]
+\[
+\vec{\delta}_{ij} = 
+\begin{bmatrix}
+  \delta_{jk1} \\ \delta_{jk2} 
+ \end{bmatrix}  
+ \distas{iid} \text{MVN} \left( 
+ \begin{bmatrix}
+  0 \\ 0 
+ \end{bmatrix},
+ d\Sigma = \begin{bmatrix}
+  d\sigma_{11}^2 & d\sigma_{12}^2 \\ 
+  d\sigma_{21}^2 & d\sigma_{22}^2
+ \end{bmatrix} 
+ \right)
+\]
+\[
+\vec{\gamma}_{j} = 
+\begin{bmatrix}
+  \gamma_{j1} \\ \gamma_{j2} 
+ \end{bmatrix}  
+ \distas{iid} \text{MVN} \left( 
+ \begin{bmatrix}
+  0 \\ 0 
+ \end{bmatrix},
+ g\Sigma = \begin{bmatrix}
+  g\sigma_{11}^2 & g\sigma_{12}^2 \\ 
+  g\sigma_{21}^2 & g\sigma_{22}^2
+ \end{bmatrix} 
+ \right)
+\]
+\[
+\vec{\eta} = 
+\begin{bmatrix}
+  \eta_{1} \\ \eta_{2} 
+ \end{bmatrix}  
+ \distas{iid} \text{MVN} \left( 
+ \begin{bmatrix}
+  0 \\ 0 
+ \end{bmatrix},
+ z\Sigma = \begin{bmatrix}
+  z\sigma_{11}^2 & z\sigma_{12}^2 \\ 
+  z\sigma_{21}^2 & z\sigma_{22}^2
+ \end{bmatrix} 
+ \right)
+\]
+%
+Thus the variance structure for the responses includes common variance components $\sigma_{\ell\ell'}$ and scaling parameters $z$, $g$ and $d$. The variance components $\sigma_{\ell\ell'}$ values estimated from the original ARTIST model are used as plug in estimates to be used in the generative model. If each of these variance scaling parameters is set to zero, there is no violation to the assumption of independence between students; thus making the error structure of the generative model~\ref{eq:simgenerative} match the error structure of the ARTIST model~\ref{eq:mancova}. However, these parameters may be increased to violate the independence assumption to varying degrees.
+
+The scaling parameter $z$ controls the variability that is common between all students; thus $z \sigma_{\ell\ell'}$ is the baseline covariance of responses for students from different labs. The scaling parameter $g$ controls the additive increase to covariance between students of the same lecture section and $d$ controls the additive increase to covariance between students of the same lab section.}
+
+
+
+\[
+\Cov[\epsilon_{ik}, \epsilon_{j\ell}] = \eta \sigma_{k\ell}^2, \ \ \ \text{ where } \eta \in [0,1]  \text{ for all } i \ne j, \text{ and } k,\ell \in \{1,2\}
+\]
+where $\eta$ scales the covariance between all students uniformly and is used to adjust the violation of independence. Note that for $\eta=0$ there is no violation of independence.
+
+
+Bivariate responses were simulated by adding randomly generated errors from with the variance structure described above to a fixed response structure. The simulated bivariate responses were fitted using the MANCOVA model~(\ref{eq:mancova}) assuming independence between students. Simulations were conducted 25,000 times for each $\eta \in \{0.0,0.1,0.2,0.3,0.4,0.5\}$. 
+
+Generally, the simulation results indicate, that with an increasing dependence between the responses (i.e.\ with an increase in $\eta$) standard errors for parameter estimates decrease in value. However, the observed parameter estimates remained unbiased at all levels of $\eta$.
+%It was also found that estimated parameters remain unbiased and have decreasing variance as $\eta$ increases.
+The simulation results indicate that under the generative model the Type I error rates -- for univariate and bivariate tests for curriculum treatment effect -- remain very stable around the nominal $\alpha = 0.05$ level as the independence violation increased.  
+
+We further simulated under a generative model which allowed the responses from students of the same classroom to have higher covariance than those from students of different classrooms. When disparity in class based response covariances was increased, the type I error rate (i.e. \ incorrectly attributing the difference in responses to the treatment which is confounded with the classroom) also increased. Note that this covariance disparity would need to be attributed to non-treatment related factors because the generative model is designed to carry no curriculum treatment effect. We believe that the alternation of instruction, identical curricula administered with all students in the same room in weeks 1 to 8, and careful pedagogical preparation has minimized all non-treatment related differences that may have arisen due to the physically different classrooms in which the curriculum treatments were administered.  
+
+Therefore, the simulation results alleviate concerns over violating the assumption of independence when student responses are generally correlated. However, if the covariance structure for responses is aligned with classrooms the error rates increase due to confounding with the treatment and we must trust that the experimental design has minimized this possibility. Full details of the simulation study may be found in Appendix~\ref{simappend}.
  
 %---------------------------------------------------------------------------
 \section{Discussion and Conclusions}
@@ -704,11 +802,9 @@ For the ARTIST Model described in Subsection~\ref{ArtistModel} and the Applied M
 \subsection{Simulation Study for Violations of Independence}
 \label{simappend}
 
-The assumption of independence of errors between students in the bivariate MANCOVA models specified in  (\ref{eq:mancova}), which we employed in Sections~\ref{ArtistModel}~and~\ref{AppliedModel} , is made in order to fit models with parsimonious variance structures. The assumption of independence between students is very likely violated in practice, because learning outcomes for students attending the same class with the same instructors in the same semester could well be related. It is therefore important to assess the consequences this violation has on the results of the MANCOVA models fit in the paper.  We wish to identify the effect of the violation on the error rates in the tests for curriculum effects on the learning outcomes. We elected to explore the consequences through a simulation study wherein the assumption of independence was knowingly violated and the effects on errors rates were recorded.
 
-We chose the ARTIST Model (\ref{eq:mancova}) from Sections~\ref{ArtistModel} as the basis for our simulation study. Under the assumption of independence in the errors between students, we found weak evidence of a curriculum effect on the bivariate learning outcomes based on Pillai's $\lambda$. Further inspection of the individual responses using t-tests revealed evidence of a significant effect of the curriculum on confidence interval related outcomes, but no evidence of a curriculum effect on hypothesis test related outcomes.  In order to assess the reliability of the results, we must first know how a violation of the assumption of independence would impact the error rates for these tests.  We simulate under the scenario where the curriculum effect on learning outcomes is non-existent and assess the effect on   error rates under differing degrees of violation. 
 
-The ARTIST Model of the form  (\ref{eq:mancova}) assumes  that errors from different students are independent, i.e.~$\Cov[\epsilon_{ik}, \epsilon_{jl}] = 0$, for all $i \neq j$ with $ 1 \le i,j \le n$. In our simulation setting, we simulate data from a model adapted from the model~(\ref{eq:mancova}), where there is no curriculum effect, i.e.~$\tau_{1} =  \tau_{2} = 0$ and where additionally the assumption of independent errors is violated by assuming a between student covariance of 
+The ARTIST Model of the form (\ref{eq:mancova}) assumes  that errors from different students are independent, i.e.~$\Cov[\epsilon_{ik}, \epsilon_{jl}] = 0$, for all $i \neq j$ with $ 1 \le i,j \le n$. In our simulation setting, we simulate data from a model adapted from the model~(\ref{eq:mancova}), where there is no curriculum effect, i.e.~$\tau_{1} =  \tau_{2} = 0$ and where additionally the assumption of independent errors is violated by assuming a between student covariance of 
 \[
 \Cov[\epsilon_{ik}, \epsilon_{jl}] = \eta \sigma_{kl}^2, \ \ \ \text{ where } \eta \in [0,1]  \text{ for all } i \ne j. 
 \]
