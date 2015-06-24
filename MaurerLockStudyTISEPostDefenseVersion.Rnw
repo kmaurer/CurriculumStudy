@@ -794,22 +794,22 @@ grid.arrange(p2,p3,p1, nrow=1, widths=c(1,1,1.5))
 Note that the magnitude of variance scaling parameters would need to be attributed to non-curricular factors because the generative model is designed to carry no curriculum treatment effect. Great care was taken during the study design and administration to minimize all non-curricular differences that students encountered in lecture and lab classrooms; using the alternation of instruction, identical curricula administered with all students in the same room in weeks 1 to 8, and careful pedagogical preparation. However, the simulation study indicates that even in the case of very small disparities in covariance structure due to lecture or lab sections, the model suffers highly inflated Type 1 error rates and gives rise to major doubts about the results of tests for curricular effects in Sections~\ref{ArtistModel} and~\ref{AppliedModel}. 
 }
 
-\[
-\Cov[\epsilon_{ik}, \epsilon_{j\ell}] = \eta \sigma_{k\ell}^2, \ \ \ \text{ where } \eta \in [0,1]  \text{ for all } i \ne j, \text{ and } k,\ell \in \{1,2\}
-\]
-where $\eta$ scales the covariance between all students uniformly and is used to adjust the violation of independence. Note that for $\eta=0$ there is no violation of independence.
-
-
-Bivariate responses were simulated by adding randomly generated errors from with the variance structure described above to a fixed response structure. The simulated bivariate responses were fitted using the MANCOVA model~(\ref{eq:mancova}) assuming independence between students. Simulations were conducted 25,000 times for each $\eta \in \{0.0,0.1,0.2,0.3,0.4,0.5\}$. 
-
-Generally, the simulation results indicate, that with an increasing dependence between the responses (i.e.\ with an increase in $\eta$) standard errors for parameter estimates decrease in value. However, the observed parameter estimates remained unbiased at all levels of $\eta$.
-%It was also found that estimated parameters remain unbiased and have decreasing variance as $\eta$ increases.
-The simulation results indicate that under the generative model the Type I error rates -- for univariate and bivariate tests for curriculum treatment effect -- remain very stable around the nominal $\alpha = 0.05$ level as the independence violation increased.  
-
-We further simulated under a generative model which allowed the responses from students of the same classroom to have higher covariance than those from students of different classrooms. When disparity in class based response covariances was increased, the type I error rate (i.e. \ incorrectly attributing the difference in responses to the treatment which is confounded with the classroom) also increased. Note that this covariance disparity would need to be attributed to non-treatment related factors because the generative model is designed to carry no curriculum treatment effect. We believe that the alternation of instruction, identical curricula administered with all students in the same room in weeks 1 to 8, and careful pedagogical preparation has minimized all non-treatment related differences that may have arisen due to the physically different classrooms in which the curriculum treatments were administered.  
-
-Therefore, the simulation results alleviate concerns over violating the assumption of independence when student responses are generally correlated. However, if the covariance structure for responses is aligned with classrooms the error rates increase due to confounding with the treatment and we must trust that the experimental design has minimized this possibility. Full details of the simulation study may be found in Appendix~\ref{simappend}.
- 
+% \[
+% \Cov[\epsilon_{ik}, \epsilon_{j\ell}] = \eta \sigma_{k\ell}^2, \ \ \ \text{ where } \eta \in [0,1]  \text{ for all } i \ne j, \text{ and } k,\ell \in \{1,2\}
+% \]
+% where $\eta$ scales the covariance between all students uniformly and is used to adjust the violation of independence. Note that for $\eta=0$ there is no violation of independence.
+% 
+% 
+% Bivariate responses were simulated by adding randomly generated errors from with the variance structure described above to a fixed response structure. The simulated bivariate responses were fitted using the MANCOVA model~(\ref{eq:mancova}) assuming independence between students. Simulations were conducted 25,000 times for each $\eta \in \{0.0,0.1,0.2,0.3,0.4,0.5\}$. 
+% 
+% Generally, the simulation results indicate, that with an increasing dependence between the responses (i.e.\ with an increase in $\eta$) standard errors for parameter estimates decrease in value. However, the observed parameter estimates remained unbiased at all levels of $\eta$.
+% %It was also found that estimated parameters remain unbiased and have decreasing variance as $\eta$ increases.
+% The simulation results indicate that under the generative model the Type I error rates -- for univariate and bivariate tests for curriculum treatment effect -- remain very stable around the nominal $\alpha = 0.05$ level as the independence violation increased.  
+% 
+% We further simulated under a generative model which allowed the responses from students of the same classroom to have higher covariance than those from students of different classrooms. When disparity in class based response covariances was increased, the type I error rate (i.e. \ incorrectly attributing the difference in responses to the treatment which is confounded with the classroom) also increased. Note that this covariance disparity would need to be attributed to non-treatment related factors because the generative model is designed to carry no curriculum treatment effect. We believe that the alternation of instruction, identical curricula administered with all students in the same room in weeks 1 to 8, and careful pedagogical preparation has minimized all non-treatment related differences that may have arisen due to the physically different classrooms in which the curriculum treatments were administered.  
+% 
+% Therefore, the simulation results alleviate concerns over violating the assumption of independence when student responses are generally correlated. However, if the covariance structure for responses is aligned with classrooms the error rates increase due to confounding with the treatment and we must trust that the experimental design has minimized this possibility. Full details of the simulation study may be found in Appendix~\ref{simappend}.
+%  
 %---------------------------------------------------------------------------
 \section{Discussion and Conclusions}
 \label{discussion}
