@@ -62,6 +62,8 @@ dat$lab5perc <- dat$lab5perc * 100
 dat$hw2perc <- dat$hw2perc * 100
 dat$treatment <- "Simulation-Based"
 dat$treatment[which(dat$room=="sweeney")] <- "Traditional"
+
+errorsummary2 <- read.csv("data/errorsummary2.csv")
 @
 
 %---------------------------------------------------------------------------
@@ -739,16 +741,57 @@ The simulation procedure for assessing the error rates under a violation indepen
 \begin{enumerate}
 \item Randomly premute the class and lab section labels in the data 
 \item Simulate the random effect vectors $\vec{\epsilon_{ijk}}^{\hspace{.1cm}(m)}$, $\vec{\delta_{jk}}^{\hspace{.1cm}(m)}$,$\vec{\gamma_{k}}^{\hspace{.1cm}(m)}$, and $\vec{\eta}^{\hspace{.1cm}(m)}$ defined in the multivariate normal distribution above.
-\item Derive corresponding responses based on model (\ref{eq:simgenerative}) as:
+\item Derive corresponding responses with generative model~(\ref{eq:simgenerative}) as:
 %
 \begin{center}
 $y_{ijk\ell} = \beta_{0k} + x_{ijk1}\beta_{k1} + x_{ijk2}\beta_{k2} + \eta_{\ell}^{\hspace{.1cm}(m)} + \gamma_{k\ell}^{\hspace{.1cm}(m)} + \delta_{jk\ell}^{\hspace{.1cm}(m)} + \epsilon_{ijk\ell}^{\hspace{.1cm}(m)}$
 \end{center}
 %
-\item Fit the ARTIST Model (assuming independence) as given in model (\ref{eq:mancova}) to the simulated responses. Use class section to indicate curriculum.
-\item Conduct Pillai's test for overall curriculum effect and individual t-tests for curriculum effect on each response. Record test-statistics and p-values.
-\end{enumerate}}
+\item Fit the ARTIST Model (assuming independence) as given in model~(\ref{eq:mancova}) to the simulated responses. Use class section to indicate curriculum.
+\item Conduct Pillai's test for overall curriculum effect and individual t-tests for curriculum effect on each response. Record test statistics and p-values.
+\end{enumerate}
 
+Recall that in the generative model~(\ref{eq:simgenerative}) does not include a treatment effect, therefore any simulation where significant curriculum effects are found is a Type 1 error. Figure~\ref{fig:simerrorratesdg} displays the observed type 1 error rates under violations of between student independence. When the variance scaling parameters are set to zero there is no violation of independence and we see that the tests hold at the nominal $\alpha$=0.05 Type 1 error rate. We see that the Type 1 error rates increase quickly when the variance scaling parameters, $d$ and $g$ increase; most dramatically for Pillai's test. 
+
+When the between labmate covariance in 4\% higher than for non-labmates (i.e. $d$=0.04) the Type 1 error rates for individual t-tests are above 0.15 and the Pillai's test is above 0.20; over three and four times the nominal rate, respectively. Even worse, when the between classmate covariance in 4\% higher than for non-classmates (i.e. $g$=0.04) the Type 1 error rates for individual t-tests are above 0.25 and the Pillai's test is above 0.35; over five and seven times the nominal rate, respectively. This error rate inflation occurs because the random effects based on class and lab sections are being misinterpreted in the ARTIST model as fixed effects of curriculum due to the assumption of independence between students; a misinterpretation made worse in the case of class section due to the complete confounding with curriculum.
+}
+
+
+
+<<simerrorratesdg, echo=FALSE , message=FALSE, warning=FALSE, fig.width=10, fig.height=5, out.width='1\\linewidth', fig.pos='h',fig.align='center',fig.cap="Type 1 error rates for each combination of $d$ and $g$ from 20,000 simulations for individual t-tests and Pillai's overall test for curriculum effects on the ARTIST response scores. The horizontal black line indicates the nominal $\\alpha$ = 0.05 Type 1 error rate.", cache=TRUE>>=
+# errorsummary2 found in setup script
+alpha <- 0.05
+### Type 1 error plots:
+# error increases as delta/gamma (class/labmate effects) increase in
+# relation to the within student eta.  Tau held to zero for all
+p1 <- qplot(g,T1ErrorRatePillai, data=errorsummary2, geom="line", group=d, 
+  color=d, size=I(.7)) + geom_hline(yintercept=alpha)+
+  xlab("g") + theme_bw() + ylim(c(0,0.75)) + 
+  scale_x_continuous(breaks=c(0,.02,.04,.06,.08,.1)) +
+  ylab("")+
+  ggtitle(expression(paste("Pillai's Test for ",tau[1],"=",tau[2],"=0", sep="")))+
+  scale_colour_gradient(breaks=c(0,.02,.04,.06,.08,.1))
+
+p2 <- qplot(g,T1ErrorRateBeta1, data=errorsummary2, geom="line", group=d, 
+      color=d, size=I(.7)) + geom_hline(yintercept=alpha)+
+  xlab("g") + theme_bw() + ylim(c(0,0.75)) + 
+  theme(legend.position="none") + scale_x_continuous(breaks=c(0,.02,.04,.06,.08,.1))+
+  ylab("Type 1 Error Rate")+
+  ggtitle(expression(paste("t-test for ",tau[1],"=0", sep="")))
+
+p3 <- qplot(g,T1ErrorRateBeta2, data=errorsummary2, geom="line", group=d, 
+      color=d, size=I(.7)) + geom_hline(yintercept=alpha)+
+  xlab("g") + theme_bw() + ylim(c(0,0.75)) + 
+  theme(legend.position="none")+ scale_x_continuous(breaks=c(0,.02,.04,.06,.08,.1))+
+  ylab("")+
+  ggtitle(expression(paste("t-test for ",tau[2],"=0", sep="")))
+
+grid.arrange(p2,p3,p1, nrow=1, widths=c(1,1,1.5))
+@
+
+\km{
+Note that this covariance disparities would need to be attributed to non-curricular factors because the generative model is designed to carry no curriculum treatment effect. Great care was taken during the study design and administration to minimize all non-treatment related differences that may have arisen due to the physically different class and lab rooms; using the alternation of instruction, identical curricula administered with all students in the same room in weeks 1 to 8, and careful pedagogical preparation. However, the simulation study indicates that even in the case of very small disparities in class or lab section based covariances between students we suffer from inflations to the Type 1 error rates raises major doubts on the results in the model based analyses in Sections~\ref{ArtistModel} and~\ref{AppliedModel}. 
+}
 
 
 \[
