@@ -638,41 +638,39 @@ Treatment & \Sexpr{sprintf("%.4f",round(summarytab1[3,2],4))} & \Sexpr{sprintf("
 
 \end{table}
 
+
+
+\km{
 %-----------------------------------------------------
 \subsection{Model Assessment}
 \label{SimStudy}
 
-\km{The assumption of independence of errors between students in the bivariate MANCOVA models specified in  (\ref{eq:mancova}), which we employed in Sections~\ref{ArtistModel}~and~\ref{AppliedModel} , is made in order to fit models with parsimonious variance structures. The assumption of independence between students is very likely violated in practice, because learning outcomes for students attending the same class with the same instructors in the same semester will likely be related. It is therefore important to assess the consequences this violation has on the results of the MANCOVA models fit in the paper.  We wish to identify the effect of the violation on the Type 1 error rates in the tests for curriculum effects on the learning outcomes. We elected to explore the consequences through a simulation study wherein the assumption of independence was knowingly violated and the effects on errors rates were recorded.}
+The assumption of independence of errors between students in the bivariate MANCOVA models specified in  (\ref{eq:mancova}), which we employed in Sections~\ref{ArtistModel}~and~\ref{AppliedModel} , is made in order to fit models with parsimonious variance structures. The assumption of independence between students is very likely violated in practice, because learning outcomes for students attending the same class with the same instructors in the same semester will likely be related. It is therefore important to assess the consequences this violation has on the results of the MANCOVA models fit in the paper.  We wish to identify the effect of the violation on the Type 1 error rates in the tests for curriculum effects on the learning outcomes. We elected to explore the consequences through a simulation study wherein the assumption of independence was knowingly violated and the effects on errors rates were recorded.}
 
-\km{We chose the ARTIST Model (\ref{eq:mancova}) from Sections~\ref{ArtistModel} as the basis for our simulation study. Under the assumption of independence in the errors between students, we found weak evidence of a curriculum effect on the bivariate learning outcomes based on Pillai's $\lambda$. Further inspection of the individual responses using t-tests revealed evidence of a significant effect of the curriculum on confidence interval related outcomes, but no evidence of a curriculum effect on hypothesis test related outcomes. In order to assess the trustworthiness of the results, we must first know how a violation of the assumption of independence would impact the Type 1 error rates for these tests. We simulate responses from a generative model where the curriculum effect on learning outcomes is non-existent, i.e.\ $\tau_{1} =  \tau_{2} = 0$, and the assumption of independence between students is violated to differing degrees. We then track the Type 1 error rates for test of curriculum effects when the ARTIST model is fit to the simulated responses. }
+\km{We chose the ARTIST Model (\ref{eq:mancova}) from Sections~\ref{ArtistModel} as the basis for our simulation study. Under the assumption of independence in the errors between students, we found weak evidence of a curriculum effect on the bivariate learning outcomes based on Pillai's $\lambda$. Further inspection of the individual responses using t-tests revealed evidence of a significant effect of the curriculum on confidence interval related outcomes, but no evidence of a curriculum effect on hypothesis test related outcomes. In order to assess the trustworthiness of the results, we must first know how a violation of the assumption of independence would impact the Type 1 error rates for these tests. We simulate responses from a generative model where the curriculum effect on learning outcomes is non-existent, i.e.\ $\tau_{1} =  \tau_{2} = 0$, and the assumption of independence between students is violated to differing degrees. We then track the Type 1 error rates for test of curriculum effects when the ARTIST model is fit to the simulated responses. 
 
-
-\km{ The generative model for the simulations was adapted from the MANCOVA model~(\ref{eq:mancova}) which adds random effects to violate the independence between students. The generative model includes fixed effects for lab 5 and midterm scores and random effects for responses, lab sections and lecture section. Recall that responses are nested within students, students are nested within lab sections, and labs are nested within lecture sections. Thus the generative model is defined as, }
-
-\km{
+The generative model for the simulations was adapted from the MANCOVA model~(\ref{eq:mancova}) which adds random effects to violate the independence between students. The generative model includes fixed effects for lab 5 and midterm scores and random effects for responses, lab sections and lecture section. Recall that responses are nested within students, students are nested within lab sections, and labs are nested within lecture sections. Thus the generative model is defined as,
+%
 \begin{eqnarray}\label{eq:simgenerative}
 y_{ijk\ell} = \beta_{0k} + x_{ijk1}\beta_{k1} + x_{ijk2}\beta_{k2} + \eta_{\ell} + \gamma_{k\ell} + \delta_{jk\ell} + \epsilon_{ijk\ell},
 \end{eqnarray}
 %
-where 
-
-\begin{tabular}{lp{5in}}
-$y_{ijkl}$ &  is the $\ell^{th}$ response from student $i$ who is in lab group $j$ and classroom $k$,  \\
- & where $i \in \left\{1,\dots,n\right\}$, $j \in \left\{1,2,3,4\right\}$, $k \in \left\{1,2\right\}$, and $\ell \in \left\{1,2\right\}$ \\
-$\beta_{\ell 0}$ & is the common intercept for response $\ell$,  \\
-$\beta_{\ell 1}$, & is the model coefficients for lab 5 score for response $\ell$, \\
-$\beta_{\ell 2}$, & is the model coefficients for midterm score for response $\ell$, \\
-$x_{i1}$, & is the lab 5 score for student $i$, \\
-$x_{i2}$, & is the midterm score for student $i$, \\
-$\eta_{\ell}$ & is the random effect for the $\ell ^{th}$ response common to all students.\\ 
-$\gamma_{k\ell}$ & is the random effect for lecture section $k$ on the $\ell ^{th}$ response. \\
-$\delta_{jk\ell}$ & is the random effect for lab section $j$ on the $\ell ^{th}$ response. \\
-$\epsilon_{ijk\ell}$ & is the error term for the $\ell ^{th}$ response from the $i^{th}$ student. \\
-\end{tabular}
-}
-
-\km{
-The distributions for the random effects and error terms is parameterized such that
+where $y_{ijkl}$ is the $\ell^{th}$ response from student $i$ who is in lab group $j$ and classroom $k$ for $i \in \left\{1,\dots,n\right\}$, $j \in \left\{1,2,3,4\right\}$, $k \in \left\{1,2\right\}$, and $\ell \in \left\{1,2\right\}$. $\beta_{\ell 0}$, $\beta_{\ell 1}$ and $\beta_{\ell 2}$ are the fixed effect coefficients for response $\ell$ for the common intercept, lab 5 score and midterm score, respectively. In the generative model these coefficients are set equal to the estimated coefficients for the intercept, lab 5 score and midterm score from the original ARTIST model. The remaining additive terms from the model are random effects with the distributions defined such that
+%
+% \begin{tabular}{lp{5in}}
+% $y_{ijkl}$ &  is the $\ell^{th}$ response from student $i$ who is in lab group $j$ and classroom $k$,  \\
+%  & where $i \in \left\{1,\dots,n\right\}$, $j \in \left\{1,2,3,4\right\}$, $k \in \left\{1,2\right\}$, and $\ell \in \left\{1,2\right\}$ \\
+% $\beta_{\ell 0}$ & is the common intercept for response $\ell$,  \\
+% $\beta_{\ell 1}$ & is the model coefficients for lab 5 score for response $\ell$, \\
+% $\beta_{\ell 2}$ & is the model coefficients for midterm score for response $\ell$, \\
+% $x_{i1}$ & is the lab 5 score for student $i$, \\
+% $x_{i2}$ & is the midterm score for student $i$, \\
+% $\eta_{\ell}$ & is the random effect for the $\ell ^{th}$ response common to all students.\\ 
+% $\gamma_{k\ell}$ & is the random effect for lecture section $k$ on the $\ell ^{th}$ response. \\
+% $\delta_{jk\ell}$ & is the random effect for lab section $j$ on the $\ell ^{th}$ response. \\
+% $\epsilon_{ijk\ell}$ & is the error term for the $\ell ^{th}$ response from the $i^{th}$ student. \\
+% \end{tabular}
+% 
 \[
 \vec{\epsilon}_{ijk} = 
 \begin{bmatrix}
@@ -689,7 +687,7 @@ The distributions for the random effects and error terms is parameterized such t
  \right)
 \]
 \[
-\vec{\delta}_{ij} = 
+\vec{\delta}_{jk} = 
 \begin{bmatrix}
   \delta_{jk1} \\ \delta_{jk2} 
  \end{bmatrix}  
@@ -704,9 +702,9 @@ The distributions for the random effects and error terms is parameterized such t
  \right)
 \]
 \[
-\vec{\gamma}_{j} = 
+\vec{\gamma}_{k} = 
 \begin{bmatrix}
-  \gamma_{j1} \\ \gamma_{j2} 
+  \gamma_{k1} \\ \gamma_{k2} 
  \end{bmatrix}  
  \distas{iid} \text{MVN} \left( 
  \begin{bmatrix}
@@ -734,9 +732,22 @@ The distributions for the random effects and error terms is parameterized such t
  \right)
 \]
 %
-Thus the variance structure for the responses includes common variance components $\sigma_{\ell\ell'}$ and scaling parameters $z$, $g$ and $d$. The variance components $\sigma_{\ell\ell'}$ values estimated from the original ARTIST model are used as plug in estimates to be used in the generative model. If each of these variance scaling parameters is set to zero, there is no violation to the assumption of independence between students; thus making the error structure of the generative model~\ref{eq:simgenerative} match the error structure of the ARTIST model~\ref{eq:mancova}. However, these parameters may be increased to violate the independence assumption to varying degrees.
+Thus the variance structure for the responses includes common variance components $\sigma_{\ell\ell'}$ and scaling parameters $z$, $g$ and $d$. The variance components $\sigma_{\ell\ell'}$ values estimated from the original ARTIST model are used as plug in estimates to be used in the generative model. The scaling parameter $z$ controls the variability that is common between all students; thus $z \sigma_{\ell\ell'}$ is the baseline covariance of responses for students from different labs. The scaling parameter $g$ controls the additive increase to covariance between students of the same lecture section, $g \sigma_{\ell\ell'}$, and $d$ controls the additive increase to covariance between students of the same lab section, $d \sigma_{\ell\ell'}$. If each of these variance scaling parameters is set to zero, there is no violation to the assumption of independence between students; thus making the error structure of the generative model~\ref{eq:simgenerative} match the error structure of the ARTIST model~\ref{eq:mancova}. However, these parameters may be increased to violate the independence assumption to varying degrees.
 
-The scaling parameter $z$ controls the variability that is common between all students; thus $z \sigma_{\ell\ell'}$ is the baseline covariance of responses for students from different labs. The scaling parameter $g$ controls the additive increase to covariance between students of the same lecture section and $d$ controls the additive increase to covariance between students of the same lab section.}
+The simulation procedure for assessing the error rates under a violation independence between student responses is conducted in a five step process. We consider with violations with all combinations of $d$ in $\{0,0.02,0.04,0.06,0.08,0.1\}$ and $g$ in $\{0,0.02,0.04,0.06,0.08,0.1\}$. We set $z$=0 for all simulations, as a random effect that is common to \textit{all} students will not effect tests for a curriculum effect. For each combination of variance scaling parameters we repeat the following simulation process for $M = 20,000$: 
+%
+\begin{enumerate}
+\item Randomly premute the class and lab section labels in the data 
+\item Simulate the random effect vectors $\vec{\epsilon_{ijk}}^{\hspace{.1cm}(m)}$, $\vec{\delta_{jk}}^{\hspace{.1cm}(m)}$,$\vec{\gamma_{k}}^{\hspace{.1cm}(m)}$, and $\vec{\eta}^{\hspace{.1cm}(m)}$ defined in the multivariate normal distribution above.
+\item Derive corresponding responses based on model (\ref{eq:simgenerative}) as:
+%
+\begin{center}
+$y_{ijk\ell} = \beta_{0k} + x_{ijk1}\beta_{k1} + x_{ijk2}\beta_{k2} + \eta_{\ell}^{\hspace{.1cm}(m)} + \gamma_{k\ell}^{\hspace{.1cm}(m)} + \delta_{jk\ell}^{\hspace{.1cm}(m)} + \epsilon_{ijk\ell}^{\hspace{.1cm}(m)}$
+\end{center}
+%
+\item Fit the ARTIST Model (assuming independence) as given in model (\ref{eq:mancova}) to the simulated responses. Use class section to indicate curriculum.
+\item Conduct Pillai's test for overall curriculum effect and individual t-tests for curriculum effect on each response. Record test-statistics and p-values.
+\end{enumerate}}
 
 
 
