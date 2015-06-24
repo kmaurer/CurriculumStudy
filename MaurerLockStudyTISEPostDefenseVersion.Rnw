@@ -851,12 +851,12 @@ The following appendix ... lots of midterm exam stuff
 \section{Appendix: MANCOVA Model Diagnostics}
 \label{appModDiag}
 
-For the ARTIST Model described in Subsection~\ref{ArtistModel} and the Applied Model described in Subsection~\ref{AppliedModel} a set of model diagnostics were conducted. Each of these MANCOVA models are parameterized as specified in Section~\ref{analysis}; as such the assessment of model assumptions will be very similar for each model. First, repercussions of violating the assumption of independence are assessed through a simulation study.  Residual plots will be used to assess the assumptions of linearity and constant variance.  The univariate and bivariate normality of the error terms will be assessed visually using normal quantile plots and a scatterplot of the paired residuals from the model. Additionally, although it is not a modeling assumption, MANCOVA models are best behaved with low to moderate correlation between the response variables, because then then model is able to capture variance unique to each response. 
+For the ARTIST Model described in Subsection~\ref{ArtistModel} and the Applied Model described in Subsection~\ref{AppliedModel} a set of model diagnostics were conducted. Each of these MANCOVA models are parameterized as specified in Section~\ref{analysis}; as such the assessment of model assumptions will be very similar for each model.   Residual plots will be used to assess the assumptions of linearity and constant variance.  The univariate and bivariate normality of the error terms will be assessed visually using normal quantile plots and a scatterplot of the paired residuals from the model. Additionally, although it is not a modeling assumption, MANCOVA models are best behaved with low to moderate correlation between the response variables, because then then model is able to capture variance unique to each response. 
 
 \subsection{Simulation Study for Violations of Independence}
 \label{simappend}
 
-
+\km{To be removed after new simulation section added to main body.}\\
 
 The ARTIST Model of the form (\ref{eq:mancova}) assumes  that errors from different students are independent, i.e.~$\Cov[\epsilon_{ik}, \epsilon_{jl}] = 0$, for all $i \neq j$ with $ 1 \le i,j \le n$. In our simulation setting, we simulate data from a model adapted from the model~(\ref{eq:mancova}), where there is no curriculum effect, i.e.~$\tau_{1} =  \tau_{2} = 0$ and where additionally the assumption of independent errors is violated by assuming a between student covariance of 
 \[
