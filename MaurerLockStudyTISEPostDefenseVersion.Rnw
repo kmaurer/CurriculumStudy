@@ -814,22 +814,26 @@ Note that the magnitude of variance scaling parameters would need to be attribut
 \section{Discussion and Conclusions}
 \label{discussion}
 
-The results of the study indicate that students receiving the simulation-based curriculum have significantly higher learning outcomes for confidence interval topics.  The magnitude of the improvement was 7.146\% on the ARTIST scale, after accounting for the midterm and lab 5 scores. There was no significant difference between traditional and simulation-based curricula on learning outcomes for hypothesis test topics. Finding a significant positive effect of the simulation-based curriculum on learning outcomes for confidence interval topics raises questions of representation and causality.
+\km{The ARTIST model analysis indicates that students receiving the simulation-based curriculum have significantly higher learning outcomes for confidence interval topics. The magnitude of the improvement was 7.146\% on the ARTIST scale, after accounting for the midterm and lab 5 scores. There was no significant difference between traditional and simulation-based curricula on learning outcomes for hypothesis test topics. The significant positive effect of the simulation-based curriculum on learning outcomes for confidence interval topics raises serious questions about violations of model assumptions, representative results, replicability of treatments and measurement of learning outcomes. }
+
+\km{The type 1 error stuff / all studies face this problem / need to know more about var structure to deal with / uniformity trials }
 
 We must bear in mind the population for which these results may be representative. The study was conducted with undergraduate students enrolled in an introductory statistics course at a large public Midwestern university.  The course is required for students in agricultural and biological sciences.  Students in the course are predominantly sophomores and juniors. The results are therefore only applicable to the extent to which these students represent the broader population of introductory statistics students.
 
-The experimental design bolsters the establishment of a causal effect through utilization of control of non-inferential course components and random assignment of students to treatment groups.  There are two assumptions that we must make to justify a claim of causality.  We must assume that the random assignment successfully eliminated all possible lurking variables (i.e. student demographic and educational backgrounds); however this is the assumption made by most randomized experiments. We must also make the assumption that the instructor effect on learning outcomes has been eliminated by the weekly alternation of instructors. We believe both assumptions are justifiable due to the care taken with randomization and instruction alternation.  
+% The experimental design bolsters the establishment of a causal effect through utilization of control of non-inferential course components and random assignment of students to treatment groups.  There are two assumptions that we must make to justify a claim of causality.  We must assume that the random assignment successfully eliminated all possible lurking variables (i.e. student demographic and educational backgrounds); however this is the assumption made by most randomized experiments. We must also make the assumption that the instructor effect on learning outcomes has been eliminated by the weekly alternation of instructors. We believe both assumptions are justifiable due to the care taken with randomization and instruction alternation.  
 
-An issue that is more problematic than the assumptions made about causality is that the treatment itself was a half semester curriculum -- a highly complex combination of lesson plans, lecture content, assignments and technology use. The treatment complexity poses a problem in identifying precisely what component of the curriculum caused the improvement in confidence interval related learning outcomes. Investigation of the efficacy of the individual components from the improved curriculum is an area for future research. 
+%An issue that is more problematic than the assumptions made about causality is that 
+\km{Another important consideration is that the treatment itself was a half semester curriculum -- a highly complex combination of lesson plans, lecture content, assignments and technology use. The treatment complexity poses a problem in identifying precisely which, if any, components of the curriculum might improve learning outcomes. Investigation of the efficacy of the individual components from the improved curriculum is an area for future research. 
+%The simulation-based approach to inference that we employed achieved a significant improvement in measured learning outcomes related to confidence intervals, but 
+There are also many possible ways to implement simulation-based inference within a course. One noteworthy characteristic was that the simulation-based curriculum that was employed in this study utilized bootstrapping to teach the concepts of confidence intervals as opposed to inverting a simulation-based hypothesis test. This study does not attempt to identify if all possible implementations of the simulation-based approach would achieve improvements in learning outcomes. }
 
-The simulation-based approach to inference that we employed achieved a significant improvement in measured learning outcomes related to confidence intervals, but there are many possible ways to implement simulation-based inference within a course. One noteworthy characteristic was that the simulation-based curriculum that was employed in this study utilized bootstrapping to teach the concepts of confidence intervals as opposed to inverting a simulation-based hypothesis test. This study does not attempt to imply that all implementations of the simulation-based approach would achieve that same improvement in learning outcomes. 
+\km{A surprising aspect of the results is that the curriculum effect was more pronounced for the learning outcomes of confidence interval topics than for hypothesis testing topics  This is surprising because much of the literature on the simulation-based approach is focused on the theoretical benefits in simplifying the concepts of hypothesis testing. A potential explanation is that the benefits of the simulation-based methods were counterbalanced by the challenge faced when students were also required to learn theory-based methods; forcing them to mentally reconcile the differences between how each approach obtains a p-value. It is important to recall that due to departmental requirements for the course, the treatment group learned simulation-based inference in addition to an abbreviated unit on theory-based inference methods. However, based on the highly inflated Type 1 error rates in studies where inter-student covariance aligns based on shared classroom experience, it is very plausible that the findings are purely random coincidence. }
 
-A surprising aspect of the results is that the curriculum effect was significant for the learning outcomes of confidence interval topics, but not for hypothesis testing topics.  This is surprising because much of the literature on the simulation-based approach is focused on the theoretical benefits in simplifying the concepts of hypothesis testing.  A potential explanation is that the benefits of the simulation-based methods were counterbalanced by the challenge faced when students were also required to learn theory-based methods; forcing them to mentally reconcile the differences between how each approach obtains a p-value. It is important to recall that due to departmental requirements for the course, the treatment group learned simulation-based inference \textit{in addition to} an abbreviated unit on theory-based inference methods. The simulation-based curriculum lead to no significant difference in learning outcomes for hypothesis testing on the ARTIST scale, despite the added complexity of learning additional concepts for conducting simulation-based tests. In addition, the added complexity related to bootstrapping confidence intervals appears to have actually improved learning outcomes for confidence intervals on the ARTIST scale.  The transition between approaches may have simply been easier for confidence interval topics; the primary difference being that the bootstrap estimated standard error was replaced by a simple theory-based estimator of the standard error. 
+%The simulation-based curriculum lead to no significant difference in learning outcomes for hypothesis testing on the ARTIST scale, despite the added complexity of learning additional concepts for conducting simulation-based tests. In addition, the added complexity related to bootstrapping confidence intervals appears to have actually improved learning outcomes for confidence intervals on the ARTIST scale. The transition between approaches may have simply been easier for confidence interval topics; the primary difference being that the bootstrap estimated standard error was replaced by a simple theory-based estimator of the standard error. 
 
-The evidence of improved learning outcomes is also contingent on the efficacy of the ARTIST scales to measure student learning. The ARTIST question sets have been criticized as being increasingly outdated
-and for lacking reliability and validity evidence \citep{Ziegler2014}. The Comprehensive Assessment of Outcomes in Statistics (CAOS; \citealt{DelMas2007}) was considered as alternative assessment of student learning because it is nationally normed and backed by a reliability study; however, the reliability was assessed for the CAOS test in its entirety (40 items) which was decided to be too extensive to be administered in addition to the other necessary components on the final exam. The Reasoning about P-values and Statistical Significance (RPASS; \citealt{LaneGetaz2013}) assessment was also considered, but not selected, because it does not assess learning outcomes for confidence interval related topics. The Basic Literacy in Statistics (BLIS; \citealt{Ziegler2014}) and the Goals and Outcomes Associated with Learning Statistics (GOALS; \citealt{Garfield2012}) assessments were recently designed to better measure student learning in the contemporary statistics classroom, unfortunately these assessments were in development at the time of this study.
+The evidence of improved learning outcomes is also contingent on the efficacy of the ARTIST scales to measure student learning. The ARTIST question sets have been criticized as being increasingly outdated and for lacking reliability and validity evidence \citep{Ziegler2014}. The Comprehensive Assessment of Outcomes in Statistics (CAOS; \citealt{DelMas2007}) was considered as alternative assessment of student learning because it is nationally normed and backed by a reliability study; however, the reliability was assessed for the CAOS test in its entirety (40 items) which was decided to be too extensive to be administered in addition to the other necessary components on the final exam. The Reasoning about P-values and Statistical Significance (RPASS; \citealt{LaneGetaz2013}) assessment was also considered, but not selected, because it does not assess learning outcomes for confidence interval related topics. The Basic Literacy in Statistics (BLIS; \citealt{Ziegler2014}) and the Goals and Outcomes Associated with Learning Statistics (GOALS; \citealt{Garfield2012}) assessments were recently designed to better measure student learning in the contemporary statistics classroom, unfortunately these assessments were in development at the time of this study.
 
-We believe that the results of this study are affirming to efficacy of simulation-based methods for teaching statistical inference. We found that the simulation-based curriculum led to significant improvement in the learning outcomes associated with confidence intervals but no significant difference from the traditional approach for learning outcomes associated with hypothesis testing. While these results are clearly not comprehensive in assessing the effect of a simulation-based curriculum on all facets learning, they indicate that learning outcomes for a core concept of statistical inference can be significantly improved with the approach.
+\km{ This study is unable to draw reliable inferencial evidence on the efficacy of simulation-based methods for teaching statistical inference due to the volatility of the Type 1 error rates under minor violations to model assumptions. This is a fundimental problem for all comparative educational studies where pedagogical treatments are administered on the class level instead of the individual student level. Viewed as a case study of two extremely similar groups student, we found that simulation-based curriculum had a noticible improvement in learning outcomes associated with confidence intervals and a small improvement in learning outcomes associated with hypothesis testing. While the results are clearly not conclusive in assessing the curricular effect on learning outcomes, the findings are not out of line with the call to consider the pedagogical benefits of a simulation-based curriculum. }
 
 
 %-------------------------------------------------------
@@ -853,298 +857,298 @@ The following appendix ... lots of midterm exam stuff
 
 For the ARTIST Model described in Subsection~\ref{ArtistModel} and the Applied Model described in Subsection~\ref{AppliedModel} a set of model diagnostics were conducted. Each of these MANCOVA models are parameterized as specified in Section~\ref{analysis}; as such the assessment of model assumptions will be very similar for each model.   Residual plots will be used to assess the assumptions of linearity and constant variance.  The univariate and bivariate normality of the error terms will be assessed visually using normal quantile plots and a scatterplot of the paired residuals from the model. Additionally, although it is not a modeling assumption, MANCOVA models are best behaved with low to moderate correlation between the response variables, because then then model is able to capture variance unique to each response. 
 
-\subsection{Simulation Study for Violations of Independence}
-\label{simappend}
-
-\km{To be removed after new simulation section added to main body.}\\
-
-The ARTIST Model of the form (\ref{eq:mancova}) assumes  that errors from different students are independent, i.e.~$\Cov[\epsilon_{ik}, \epsilon_{jl}] = 0$, for all $i \neq j$ with $ 1 \le i,j \le n$. In our simulation setting, we simulate data from a model adapted from the model~(\ref{eq:mancova}), where there is no curriculum effect, i.e.~$\tau_{1} =  \tau_{2} = 0$ and where additionally the assumption of independent errors is violated by assuming a between student covariance of 
-\[
-\Cov[\epsilon_{ik}, \epsilon_{jl}] = \eta \sigma_{kl}^2, \ \ \ \text{ where } \eta \in [0,1]  \text{ for all } i \ne j. 
-\]
-$\eta$ scales the covariance between all students uniformly and can be adjusted to increase the violation of independence. Note that when $\eta = 0$ we have no violation of independence. Thus our generative model for the ARTIST responses are linear combinations of the midterm and lab~5 scores with correlated errors. This generative model for simulation can be organized using vector notation as follows:
-%
-\begin{eqnarray}\label{eq:linear}
-\begin{bmatrix}
-  \vec{y}_1 \\ \vec{y}_2
-  \end{bmatrix}  = 
-% %---- 
-\begin{bmatrix}
- y_{11} \\ \vdots \\ y_{n1} \\ y_{12} \\ \vdots \\ y_{n2} 
-\end{bmatrix}  =
-% %----  
- \begin{bmatrix}
-  \beta_{01} + x_{11}\beta_{11} + x_{12}\beta_{21}  \\
-  \vdots  \\ 
-  \beta_{01} + x_{n1}\beta_{11} + x_{n2}\beta_{21}  \\
-  \beta_{02} + x_{11}\beta_{12} + x_{12}\beta_{22}  \\
-  \vdots  \\ 
-  \beta_{02} + x_{n1}\beta_{12} + x_{n2}\beta_{22}  \\
- \end{bmatrix} +
- \begin{bmatrix}
- \epsilon_{11} \\ \vdots \\ \epsilon_{n1} \\ \epsilon_{12} \\ \vdots \\ \epsilon_{n2} 
- \end{bmatrix} = 
- % %----
- \begin{bmatrix}
-  X\vec{\beta}_1 \\ X\vec{\beta}_2
-  \end{bmatrix} + 
-  \vec{\epsilon},
-\end{eqnarray} 
-%
-\begin{eqnarray}\label{eq:error}
-\vec{\epsilon} \sim
-% %----  
- \text{MVN}\left(
-\vec{0} \hspace{.1cm}
-  , 
-  \begin{bmatrix}
-   \sigma_{11}^2 & \sigma_{12}^2 \\ 
-   \sigma_{21}^2 & \sigma_{22}^2
-  \end{bmatrix}
-\otimes
- \left( \eta 1_{n \times n} + (1- \eta) I_{n \times n}\right)
-%  \left[\begin{array}{ccccc|ccccc}
-%   \sigma_{11}^2 & \eta \sigma_{11}^2 & \cdots & \eta \sigma_{11}^2 & \eta \sigma_{11}^2 & \sigma_{12}^2 & \eta \sigma_{12}^2 & \cdots & \eta \sigma_{12}^2 & \eta \sigma_{12}^2\\
-%   \eta \sigma_{11}^2 & \sigma_{11}^2 & \ddots & \eta \sigma_{11}^2 & \eta \sigma_{11}^2 & \eta \sigma_{12}^2 & \sigma_{12}^2 & \ddots & \eta \sigma_{12}^2 & \eta \sigma_{12}^2\\
-% \vdots & \ddots & \ddots &\ddots &\vdots & \vdots & \ddots & \ddots &\ddots &\vdots \\
-% \eta \sigma_{11}^2 & \eta \sigma_{11}^2 & \ddots & \sigma_{11}^2 & \eta \sigma_{11}^2 & \eta \sigma_{12}^2 & \eta \sigma_{12}^2 & \ddots & \sigma_{12}^2 & \eta \sigma_{12}^2\\
-% \eta \sigma_{11}^2 & \eta \sigma_{11}^2 & \cdots & \eta \sigma_{11}^2 & \sigma_{11}^2 & \eta \sigma_{12}^2 & \eta \sigma_{12}^2 & \cdots & \eta \sigma_{12}^2 & \sigma_{12}^2\\
+% \subsection{Simulation Study for Violations of Independence}
+% \label{simappend}
+% 
+% \km{To be removed after new simulation section added to main body.}\\
+% 
+% The ARTIST Model of the form (\ref{eq:mancova}) assumes  that errors from different students are independent, i.e.~$\Cov[\epsilon_{ik}, \epsilon_{jl}] = 0$, for all $i \neq j$ with $ 1 \le i,j \le n$. In our simulation setting, we simulate data from a model adapted from the model~(\ref{eq:mancova}), where there is no curriculum effect, i.e.~$\tau_{1} =  \tau_{2} = 0$ and where additionally the assumption of independent errors is violated by assuming a between student covariance of 
+% \[
+% \Cov[\epsilon_{ik}, \epsilon_{jl}] = \eta \sigma_{kl}^2, \ \ \ \text{ where } \eta \in [0,1]  \text{ for all } i \ne j. 
+% \]
+% $\eta$ scales the covariance between all students uniformly and can be adjusted to increase the violation of independence. Note that when $\eta = 0$ we have no violation of independence. Thus our generative model for the ARTIST responses are linear combinations of the midterm and lab~5 scores with correlated errors. This generative model for simulation can be organized using vector notation as follows:
+% %
+% \begin{eqnarray}\label{eq:linear}
+% \begin{bmatrix}
+%   \vec{y}_1 \\ \vec{y}_2
+%   \end{bmatrix}  = 
+% % %---- 
+% \begin{bmatrix}
+%  y_{11} \\ \vdots \\ y_{n1} \\ y_{12} \\ \vdots \\ y_{n2} 
+% \end{bmatrix}  =
+% % %----  
+%  \begin{bmatrix}
+%   \beta_{01} + x_{11}\beta_{11} + x_{12}\beta_{21}  \\
+%   \vdots  \\ 
+%   \beta_{01} + x_{n1}\beta_{11} + x_{n2}\beta_{21}  \\
+%   \beta_{02} + x_{11}\beta_{12} + x_{12}\beta_{22}  \\
+%   \vdots  \\ 
+%   \beta_{02} + x_{n1}\beta_{12} + x_{n2}\beta_{22}  \\
+%  \end{bmatrix} +
+%  \begin{bmatrix}
+%  \epsilon_{11} \\ \vdots \\ \epsilon_{n1} \\ \epsilon_{12} \\ \vdots \\ \epsilon_{n2} 
+%  \end{bmatrix} = 
+%  % %----
+%  \begin{bmatrix}
+%   X\vec{\beta}_1 \\ X\vec{\beta}_2
+%   \end{bmatrix} + 
+%   \vec{\epsilon},
+% \end{eqnarray} 
+% %
+% \begin{eqnarray}\label{eq:error}
+% \vec{\epsilon} \sim
+% % %----  
+%  \text{MVN}\left(
+% \vec{0} \hspace{.1cm}
+%   , 
+%   \begin{bmatrix}
+%    \sigma_{11}^2 & \sigma_{12}^2 \\ 
+%    \sigma_{21}^2 & \sigma_{22}^2
+%   \end{bmatrix}
+% \otimes
+%  \left( \eta 1_{n \times n} + (1- \eta) I_{n \times n}\right)
+% %  \left[\begin{array}{ccccc|ccccc}
+% %   \sigma_{11}^2 & \eta \sigma_{11}^2 & \cdots & \eta \sigma_{11}^2 & \eta \sigma_{11}^2 & \sigma_{12}^2 & \eta \sigma_{12}^2 & \cdots & \eta \sigma_{12}^2 & \eta \sigma_{12}^2\\
+% %   \eta \sigma_{11}^2 & \sigma_{11}^2 & \ddots & \eta \sigma_{11}^2 & \eta \sigma_{11}^2 & \eta \sigma_{12}^2 & \sigma_{12}^2 & \ddots & \eta \sigma_{12}^2 & \eta \sigma_{12}^2\\
+% % \vdots & \ddots & \ddots &\ddots &\vdots & \vdots & \ddots & \ddots &\ddots &\vdots \\
+% % \eta \sigma_{11}^2 & \eta \sigma_{11}^2 & \ddots & \sigma_{11}^2 & \eta \sigma_{11}^2 & \eta \sigma_{12}^2 & \eta \sigma_{12}^2 & \ddots & \sigma_{12}^2 & \eta \sigma_{12}^2\\
+% % \eta \sigma_{11}^2 & \eta \sigma_{11}^2 & \cdots & \eta \sigma_{11}^2 & \sigma_{11}^2 & \eta \sigma_{12}^2 & \eta \sigma_{12}^2 & \cdots & \eta \sigma_{12}^2 & \sigma_{12}^2\\
+% % \hline
+% % \sigma_{12}^2 & \eta \sigma_{12}^2 & \cdots & \eta \sigma_{12}^2 & \eta \sigma_{12}^2 & \sigma_{22}^2 & \eta \sigma_{22}^2 & \cdots & \eta \sigma_{22}^2 & \eta \sigma_{22}^2\\
+% %   \eta \sigma_{12}^2 & \sigma_{12}^2 & \ddots & \eta \sigma_{12}^2 & \eta \sigma_{12}^2 & \eta \sigma_{22}^2 & \sigma_{22}^2 & \ddots & \eta \sigma_{22}^2 & \eta \sigma_{22}^2\\
+% % \vdots & \ddots & \ddots &\ddots &\vdots & \vdots & \ddots & \ddots &\ddots &\vdots \\
+% % \eta \sigma_{12}^2 & \eta \sigma_{12}^2 & \ddots & \sigma_{12}^2 & \eta \sigma_{12}^2 & \eta \sigma_{22}^2 & \eta \sigma_{22}^2 & \ddots & \sigma_{22}^2 & \eta \sigma_{22}^2\\
+% % \eta \sigma_{12}^2 & \eta \sigma_{12}^2 & \cdots & \eta \sigma_{12}^2 & \sigma_{12}^2 & \eta \sigma_{22}^2 & \eta \sigma_{22}^2 & \cdots & \eta \sigma_{22}^2 & \sigma_{22}^2\\  
+% %  \end{array}\right]
+%  \right),
+% \end{eqnarray}
+% where $A \otimes B = \left( a_{ij} B \right)$ is the Kronecker product of matrices $A$ and $B$. $\vec{0}$ is the zero vector of length $2n$, $1_{n\times n}$ is the $n \times n$ matrix consisting of 1s only, and $I_{n \times n}$ is the identity matrix of dimension $n \times n$.
+% Here, $x_{i1}$ is the midterm exam score for student $i$ and $x_{i2}$ is the lab~5 score for student $i$. In order to achieve practically relevant values for the coefficients $\beta_{kp}$ of the generative model we selected the estimated values from a MANCOVA model fit to the ARTIST responses using only the midterm exam and lab~5 scores.  Likewise, the variance components, $\sigma_{kl}$ for the generative model were selected using the estimated variance structure from the same reduced MANCOVA model for the ARTIST responses. 
+% 
+% The simulation procedure for assessing the error rates under violation independence between student responses was conducted in a five step process.
+% For each $\eta$ in $\{0,0.1,0.2,0.3,0.4,0.5\}$ repeat the following process for $M = 25,000$ simulations each:
+% %
+% \begin{enumerate}
+% \item Simulate an error vector, $\vec{\epsilon}^{\hspace{.1cm}(m)}$, from the multivariate normal distribution as defined in~(\ref{eq:error}).
+% \item Derive corresponding responses based on model (\ref{eq:linear}) as:
+% %
+% \[
+% \begin{bmatrix}
+%   \vec{y}_1^{\hspace{.1cm}(m)} \\ \vec{y}_2^{\hspace{.1cm}(m)}
+%   \end{bmatrix}   =
+%    % %----
+%  \begin{bmatrix}
+%   X\vec{\beta}_1 \\ X\vec{\beta}_2
+%   \end{bmatrix} + 
+%   \vec{\epsilon}^{\hspace{.1cm}(m)}
+% \]
+% %
+% \item Create assignment to curricula  for each student randomly. 
+% 
+% \item Fit the ARTIST Model (assuming independence) as given in model (\ref{eq:mancova}) to the simulated responses
+% \item Record $\hat{\beta}_{kp}^{\hspace{.1cm}(m)}$, $\text{SE}\left[\hat{\beta}_{kp}^{\hspace{.1cm}(m)}\right]$, $\tau_k^{\hspace{.1cm}(m)}$, $\text{SE}\left[\tau_k^{\hspace{.1cm}(m)}\right]$ and $\hat{\sigma}_{kl}^{\hspace{.1cm}(m)}$ $\forall k,l \in \{1,2\}$ and $p \in \{0,1,2\}$. \\
+% Also record Pillai's $\lambda^{\hspace{.1cm}(m)}$ testing for overall curriculum effect.
+% %\item Repeat simulation steps 1 through 6, $M=25000$ times
+% 
+% \end{enumerate}
+% 
+% <<results, echo=FALSE, include=FALSE>>=
+% load("SimulationResults.RData")
+% library(plyr)
+% eta <- (0:5)/10
+% results <- ldply(1:6, function(x) data.frame(eta=eta[x], resultlist[[x]]))
+% # beta1s and beta2s are actually tau1 and tau2
+% simresults = ddply(results, .(eta), summarise,
+%       trt1=mean(beta1s),
+%       trt2=mean(beta2s),
+%       type1.1=mean(pval1s<0.05),
+%       type1.2=mean(pval2s<0.05),      
+%       betamidterm1s = mean(betamidterm1s),
+%       pvalmidterms1s = mean(pvalmidterm1s),
+%       sebetamidterm1s = mean(SEbetamidterm1s),
+%       betamidterm2s = mean(betamidterm2s),
+%       pvalmidterms2s = mean(pvalmidterm2s),
+%       sebetamidterm2s = mean(SEbetamidterm2s),
+%       avgpillai = mean(pillais),
+%       avgpillaipval = mean(pillaipvals),
+%       sebeta1s = mean(SEbeta1s),
+%       sebeta2s = mean(SEbeta1s),
+%       sdbeta1 = sd(beta1s),
+%       sdbeta2 = sd(beta2s)
+% )
+% 
+% 
+% L <- length(resultlist)
+% M = nrow(resultlist[[1]]) 
+% errorsummary <- data.frame(T2ErrorRateBetaMidterm1 = rep(NA, L),
+%                            T2ErrorRateBetaMidterm2 = rep(NA, L),
+%                            T2ErrorRateBetaLab1 = rep(NA, L),
+%                            T2ErrorRateBetaLab2 = rep(NA, L),
+%                            T1ErrorRateBeta1 = rep(NA, L),
+%                            T1ErrorRateBeta2 = rep(NA, L),
+%                            T1ErrorRatePillai = rep(NA, L))
+% 
+% for (l in 1:L){
+%   errorsummary[l,1] <- 1- length(which(resultlist[[l]]$pvalmidterm1s <= 0.05)) / M
+%   errorsummary[l,2] <- 1- length(which(resultlist[[l]]$pvalmidterm2s <= 0.05)) / M
+%   errorsummary[l,3] <- 1- length(which(resultlist[[l]]$pvallab1s <= 0.05)) / M
+%   errorsummary[l,4] <- 1- length(which(resultlist[[l]]$pvallab2s <= 0.05)) / M
+%   errorsummary[l,5] <- length(which(resultlist[[l]]$pval1s <= 0.05)) / M
+%   errorsummary[l,6] <- length(which(resultlist[[l]]$pval2s <= 0.05)) / M
+%   errorsummary[l,7] <- length(which(resultlist[[l]]$pillaipvals <= 0.05)) / M
+% }
+% errorsummary$eta <- eta
+% #errorsummary
+% @
+% 
+% Histograms for the estimated parameters from simulations at each value of $\eta$ are displayed in Figure~\ref{fig:simhistogrid}.  Note that the histograms are each centered around the true values of the parameters from the generative model, indicating that the estimates remain unbiased as the violation of independence between student responses increases. The figure also displays a decreasing variability in the parameter estimates as $\eta$ increases. The standard deviation for the treatment effect estimates, $s_{\tau_k}$, can be found in table~\ref{tab:simvarcompare}; along with averages from standard errors for the treatment effects, $\hat{\text{SE}}\left[\tau_k\right]$.  Note that while the former is measuring the variability of the coefficients from all simulations, the latter is the average of variability estimates from each individual simulation.  The paired values are nearly equivalent, meaning that the standard errors used in the t-tests for treatment effects shrink at the same rate as the true sampling variability in the parameters estimates as the violation of independence increases. 
+% 
+% <<simhistogrid, echo=FALSE , message=FALSE, warning=FALSE, fig.width=10, fig.height=6, out.width='1\\linewidth', fig.pos='h',fig.align='center',fig.cap="ARTIST model parameter estimates from 25,000 simulations at each $\\eta$. True parameter values from the generative model are displayed as vertical lines in each cell.", cache=TRUE>>=
+% library(ggplot2)
+% library(reshape2)
+% etas <- seq(from=0, to=0.5, by=.1) 
+% plotbetadata <- data.frame(eta = rep(as.character(etas),each=M))
+% plotbetadata <- cbind(plotbetadata, rbind(resultlist[[1]][,c(1,2,7,8,13,14)],
+%                                           resultlist[[2]][,c(1,2,7,8,13,14)],
+%                                           resultlist[[3]][,c(1,2,7,8,13,14)],
+%                                           resultlist[[4]][,c(1,2,7,8,13,14)],
+%                                           resultlist[[5]][,c(1,2,7,8,13,14)],
+%                                           resultlist[[6]][,c(1,2,7,8,13,14)]) )
+% names(plotbetadata) <- c("eta","beta[11]","beta[12]","beta[21]","beta[22]","tau[1]","tau[2]")
+% plotbetadata$eta <- paste("eta==",plotbetadata$eta,sep="")
+% meltplotbetadata <- melt(plotbetadata, id=c("eta"))
+% trueeffects <- unique(meltplotbetadata[,1:2])
+% trueeffects$value <-  rep(c(0.046132,0.037915,0.017485, 0.008211,0,0),each=6)
+% number_ticks <- function(n) {function(limits) pretty(limits, n)}
+% qplot(value, geom="histogram", data=meltplotbetadata,fill=I("gray42")) + 
+%   facet_grid(eta~variable, scales = "free",labeller = label_parsed) +
+%   geom_vline(aes(xintercept = value), data=trueeffects, color="black")+ theme_bw()+
+%   ylab("") + xlab("Estimated Parameter Values") +
+%   scale_x_continuous(breaks=number_ticks(3))
+% @
+% 
+% \begin{table}[hbtp]
+% \centering
+% \begin{tabular}{ccccc} \hline
+% $\eta$ & $s_{\tau_1}$ & $\hat{\text{SE}}\left[\tau_1\right]$ & $s_{\tau_2}$ & $\hat{\text{SE}}\left[\tau_2\right]$\\ 
+%  \hline  
+% \Sexpr{sprintf("%.1f",round(simresults[1,1],1))} & \Sexpr{sprintf("%.4f",round(simresults[1,14],4))} & \Sexpr{sprintf("%.4f",round(simresults[1,16],4))} &\Sexpr{sprintf("%.4f",round(simresults[1,15],4))}  &\Sexpr{sprintf("%.4f",round(simresults[1,17],4))} \\
+% \Sexpr{sprintf("%.1f",round(simresults[2,1],1))} & \Sexpr{sprintf("%.4f",round(simresults[2,14],4))} & \Sexpr{sprintf("%.4f",round(simresults[2,16],4))} &\Sexpr{sprintf("%.4f",round(simresults[2,15],4))}  &\Sexpr{sprintf("%.4f",round(simresults[2,17],4))} \\
+% \Sexpr{sprintf("%.1f",round(simresults[3,1],1))} & \Sexpr{sprintf("%.4f",round(simresults[3,14],4))} & \Sexpr{sprintf("%.4f",round(simresults[3,16],4))} &\Sexpr{sprintf("%.4f",round(simresults[3,15],4))}  &\Sexpr{sprintf("%.4f",round(simresults[3,17],4))} \\
+% \Sexpr{sprintf("%.1f",round(simresults[4,1],1))} & \Sexpr{sprintf("%.4f",round(simresults[4,14],4))} & \Sexpr{sprintf("%.4f",round(simresults[4,16],4))} &\Sexpr{sprintf("%.4f",round(simresults[4,15],4))}  &\Sexpr{sprintf("%.4f",round(simresults[4,17],4))} \\
+% \Sexpr{sprintf("%.1f",round(simresults[5,1],1))} & \Sexpr{sprintf("%.4f",round(simresults[5,14],4))} & \Sexpr{sprintf("%.4f",round(simresults[5,16],4))} &\Sexpr{sprintf("%.4f",round(simresults[5,15],4))}  &\Sexpr{sprintf("%.4f",round(simresults[5,17],4))} \\
+% \Sexpr{sprintf("%.1f",round(simresults[6,1],1))} & \Sexpr{sprintf("%.4f",round(simresults[6,14],4))} & \Sexpr{sprintf("%.4f",round(simresults[6,16],4))} &\Sexpr{sprintf("%.4f",round(simresults[6,15],4))}  &\Sexpr{sprintf("%.4f",round(simresults[6,17],4))} \\
 % \hline
-% \sigma_{12}^2 & \eta \sigma_{12}^2 & \cdots & \eta \sigma_{12}^2 & \eta \sigma_{12}^2 & \sigma_{22}^2 & \eta \sigma_{22}^2 & \cdots & \eta \sigma_{22}^2 & \eta \sigma_{22}^2\\
-%   \eta \sigma_{12}^2 & \sigma_{12}^2 & \ddots & \eta \sigma_{12}^2 & \eta \sigma_{12}^2 & \eta \sigma_{22}^2 & \sigma_{22}^2 & \ddots & \eta \sigma_{22}^2 & \eta \sigma_{22}^2\\
-% \vdots & \ddots & \ddots &\ddots &\vdots & \vdots & \ddots & \ddots &\ddots &\vdots \\
-% \eta \sigma_{12}^2 & \eta \sigma_{12}^2 & \ddots & \sigma_{12}^2 & \eta \sigma_{12}^2 & \eta \sigma_{22}^2 & \eta \sigma_{22}^2 & \ddots & \sigma_{22}^2 & \eta \sigma_{22}^2\\
-% \eta \sigma_{12}^2 & \eta \sigma_{12}^2 & \cdots & \eta \sigma_{12}^2 & \sigma_{12}^2 & \eta \sigma_{22}^2 & \eta \sigma_{22}^2 & \cdots & \eta \sigma_{22}^2 & \sigma_{22}^2\\  
-%  \end{array}\right]
- \right),
-\end{eqnarray}
-where $A \otimes B = \left( a_{ij} B \right)$ is the Kronecker product of matrices $A$ and $B$. $\vec{0}$ is the zero vector of length $2n$, $1_{n\times n}$ is the $n \times n$ matrix consisting of 1s only, and $I_{n \times n}$ is the identity matrix of dimension $n \times n$.
-Here, $x_{i1}$ is the midterm exam score for student $i$ and $x_{i2}$ is the lab~5 score for student $i$. In order to achieve practically relevant values for the coefficients $\beta_{kp}$ of the generative model we selected the estimated values from a MANCOVA model fit to the ARTIST responses using only the midterm exam and lab~5 scores.  Likewise, the variance components, $\sigma_{kl}$ for the generative model were selected using the estimated variance structure from the same reduced MANCOVA model for the ARTIST responses. 
-
-The simulation procedure for assessing the error rates under violation independence between student responses was conducted in a five step process.
-For each $\eta$ in $\{0,0.1,0.2,0.3,0.4,0.5\}$ repeat the following process for $M = 25,000$ simulations each:
-%
-\begin{enumerate}
-\item Simulate an error vector, $\vec{\epsilon}^{\hspace{.1cm}(m)}$, from the multivariate normal distribution as defined in~(\ref{eq:error}).
-\item Derive corresponding responses based on model (\ref{eq:linear}) as:
-%
-\[
-\begin{bmatrix}
-  \vec{y}_1^{\hspace{.1cm}(m)} \\ \vec{y}_2^{\hspace{.1cm}(m)}
-  \end{bmatrix}   =
-   % %----
- \begin{bmatrix}
-  X\vec{\beta}_1 \\ X\vec{\beta}_2
-  \end{bmatrix} + 
-  \vec{\epsilon}^{\hspace{.1cm}(m)}
-\]
-%
-\item Create assignment to curricula  for each student randomly. 
-
-\item Fit the ARTIST Model (assuming independence) as given in model (\ref{eq:mancova}) to the simulated responses
-\item Record $\hat{\beta}_{kp}^{\hspace{.1cm}(m)}$, $\text{SE}\left[\hat{\beta}_{kp}^{\hspace{.1cm}(m)}\right]$, $\tau_k^{\hspace{.1cm}(m)}$, $\text{SE}\left[\tau_k^{\hspace{.1cm}(m)}\right]$ and $\hat{\sigma}_{kl}^{\hspace{.1cm}(m)}$ $\forall k,l \in \{1,2\}$ and $p \in \{0,1,2\}$. \\
-Also record Pillai's $\lambda^{\hspace{.1cm}(m)}$ testing for overall curriculum effect.
-%\item Repeat simulation steps 1 through 6, $M=25000$ times
-
-\end{enumerate}
-
-<<results, echo=FALSE, include=FALSE>>=
-load("SimulationResults.RData")
-library(plyr)
-eta <- (0:5)/10
-results <- ldply(1:6, function(x) data.frame(eta=eta[x], resultlist[[x]]))
-# beta1s and beta2s are actually tau1 and tau2
-simresults = ddply(results, .(eta), summarise,
-      trt1=mean(beta1s),
-      trt2=mean(beta2s),
-      type1.1=mean(pval1s<0.05),
-      type1.2=mean(pval2s<0.05),      
-      betamidterm1s = mean(betamidterm1s),
-      pvalmidterms1s = mean(pvalmidterm1s),
-      sebetamidterm1s = mean(SEbetamidterm1s),
-      betamidterm2s = mean(betamidterm2s),
-      pvalmidterms2s = mean(pvalmidterm2s),
-      sebetamidterm2s = mean(SEbetamidterm2s),
-      avgpillai = mean(pillais),
-      avgpillaipval = mean(pillaipvals),
-      sebeta1s = mean(SEbeta1s),
-      sebeta2s = mean(SEbeta1s),
-      sdbeta1 = sd(beta1s),
-      sdbeta2 = sd(beta2s)
-)
-
-
-L <- length(resultlist)
-M = nrow(resultlist[[1]]) 
-errorsummary <- data.frame(T2ErrorRateBetaMidterm1 = rep(NA, L),
-                           T2ErrorRateBetaMidterm2 = rep(NA, L),
-                           T2ErrorRateBetaLab1 = rep(NA, L),
-                           T2ErrorRateBetaLab2 = rep(NA, L),
-                           T1ErrorRateBeta1 = rep(NA, L),
-                           T1ErrorRateBeta2 = rep(NA, L),
-                           T1ErrorRatePillai = rep(NA, L))
-
-for (l in 1:L){
-  errorsummary[l,1] <- 1- length(which(resultlist[[l]]$pvalmidterm1s <= 0.05)) / M
-  errorsummary[l,2] <- 1- length(which(resultlist[[l]]$pvalmidterm2s <= 0.05)) / M
-  errorsummary[l,3] <- 1- length(which(resultlist[[l]]$pvallab1s <= 0.05)) / M
-  errorsummary[l,4] <- 1- length(which(resultlist[[l]]$pvallab2s <= 0.05)) / M
-  errorsummary[l,5] <- length(which(resultlist[[l]]$pval1s <= 0.05)) / M
-  errorsummary[l,6] <- length(which(resultlist[[l]]$pval2s <= 0.05)) / M
-  errorsummary[l,7] <- length(which(resultlist[[l]]$pillaipvals <= 0.05)) / M
-}
-errorsummary$eta <- eta
-#errorsummary
-@
-
-Histograms for the estimated parameters from simulations at each value of $\eta$ are displayed in Figure~\ref{fig:simhistogrid}.  Note that the histograms are each centered around the true values of the parameters from the generative model, indicating that the estimates remain unbiased as the violation of independence between student responses increases. The figure also displays a decreasing variability in the parameter estimates as $\eta$ increases. The standard deviation for the treatment effect estimates, $s_{\tau_k}$, can be found in table~\ref{tab:simvarcompare}; along with averages from standard errors for the treatment effects, $\hat{\text{SE}}\left[\tau_k\right]$.  Note that while the former is measuring the variability of the coefficients from all simulations, the latter is the average of variability estimates from each individual simulation.  The paired values are nearly equivalent, meaning that the standard errors used in the t-tests for treatment effects shrink at the same rate as the true sampling variability in the parameters estimates as the violation of independence increases. 
-
-<<simhistogrid, echo=FALSE , message=FALSE, warning=FALSE, fig.width=10, fig.height=6, out.width='1\\linewidth', fig.pos='h',fig.align='center',fig.cap="ARTIST model parameter estimates from 25,000 simulations at each $\\eta$. True parameter values from the generative model are displayed as vertical lines in each cell.", cache=TRUE>>=
-library(ggplot2)
-library(reshape2)
-etas <- seq(from=0, to=0.5, by=.1) 
-plotbetadata <- data.frame(eta = rep(as.character(etas),each=M))
-plotbetadata <- cbind(plotbetadata, rbind(resultlist[[1]][,c(1,2,7,8,13,14)],
-                                          resultlist[[2]][,c(1,2,7,8,13,14)],
-                                          resultlist[[3]][,c(1,2,7,8,13,14)],
-                                          resultlist[[4]][,c(1,2,7,8,13,14)],
-                                          resultlist[[5]][,c(1,2,7,8,13,14)],
-                                          resultlist[[6]][,c(1,2,7,8,13,14)]) )
-names(plotbetadata) <- c("eta","beta[11]","beta[12]","beta[21]","beta[22]","tau[1]","tau[2]")
-plotbetadata$eta <- paste("eta==",plotbetadata$eta,sep="")
-meltplotbetadata <- melt(plotbetadata, id=c("eta"))
-trueeffects <- unique(meltplotbetadata[,1:2])
-trueeffects$value <-  rep(c(0.046132,0.037915,0.017485, 0.008211,0,0),each=6)
-number_ticks <- function(n) {function(limits) pretty(limits, n)}
-qplot(value, geom="histogram", data=meltplotbetadata,fill=I("gray42")) + 
-  facet_grid(eta~variable, scales = "free",labeller = label_parsed) +
-  geom_vline(aes(xintercept = value), data=trueeffects, color="black")+ theme_bw()+
-  ylab("") + xlab("Estimated Parameter Values") +
-  scale_x_continuous(breaks=number_ticks(3))
-@
-
-\begin{table}[hbtp]
-\centering
-\begin{tabular}{ccccc} \hline
-$\eta$ & $s_{\tau_1}$ & $\hat{\text{SE}}\left[\tau_1\right]$ & $s_{\tau_2}$ & $\hat{\text{SE}}\left[\tau_2\right]$\\ 
- \hline  
-\Sexpr{sprintf("%.1f",round(simresults[1,1],1))} & \Sexpr{sprintf("%.4f",round(simresults[1,14],4))} & \Sexpr{sprintf("%.4f",round(simresults[1,16],4))} &\Sexpr{sprintf("%.4f",round(simresults[1,15],4))}  &\Sexpr{sprintf("%.4f",round(simresults[1,17],4))} \\
-\Sexpr{sprintf("%.1f",round(simresults[2,1],1))} & \Sexpr{sprintf("%.4f",round(simresults[2,14],4))} & \Sexpr{sprintf("%.4f",round(simresults[2,16],4))} &\Sexpr{sprintf("%.4f",round(simresults[2,15],4))}  &\Sexpr{sprintf("%.4f",round(simresults[2,17],4))} \\
-\Sexpr{sprintf("%.1f",round(simresults[3,1],1))} & \Sexpr{sprintf("%.4f",round(simresults[3,14],4))} & \Sexpr{sprintf("%.4f",round(simresults[3,16],4))} &\Sexpr{sprintf("%.4f",round(simresults[3,15],4))}  &\Sexpr{sprintf("%.4f",round(simresults[3,17],4))} \\
-\Sexpr{sprintf("%.1f",round(simresults[4,1],1))} & \Sexpr{sprintf("%.4f",round(simresults[4,14],4))} & \Sexpr{sprintf("%.4f",round(simresults[4,16],4))} &\Sexpr{sprintf("%.4f",round(simresults[4,15],4))}  &\Sexpr{sprintf("%.4f",round(simresults[4,17],4))} \\
-\Sexpr{sprintf("%.1f",round(simresults[5,1],1))} & \Sexpr{sprintf("%.4f",round(simresults[5,14],4))} & \Sexpr{sprintf("%.4f",round(simresults[5,16],4))} &\Sexpr{sprintf("%.4f",round(simresults[5,15],4))}  &\Sexpr{sprintf("%.4f",round(simresults[5,17],4))} \\
-\Sexpr{sprintf("%.1f",round(simresults[6,1],1))} & \Sexpr{sprintf("%.4f",round(simresults[6,14],4))} & \Sexpr{sprintf("%.4f",round(simresults[6,16],4))} &\Sexpr{sprintf("%.4f",round(simresults[6,15],4))}  &\Sexpr{sprintf("%.4f",round(simresults[6,17],4))} \\
-\hline
-\end{tabular}
-\caption{Comparison of the standard deviation for the treatment effect estimates, $s_{\tau_k}$, and average from standard errors for the treatment effects, $\hat{\text{SE}}\left[\tau_k\right]$ from simulations under each $\eta$.}
-\label{tab:simvarcompare}
-\end{table}
-%
-Table~\ref{tab:errorrates} displays that the Type I error rates from the Pillai's test and each of the individual t-tests for curriculum treatment effects are stable around the nominal $\alpha = 0.05$ level for all $\eta$ values. Thus the violation of independence between student responses is not detrimental to the Type I error rates in this setting, where no treatment effects exists in our generative model.  The stability in the Type I errors is linked to the finding that the variability estimates used in testing are shrinking at approximately the same rate as the true sampling variability in the parameters estimates, as discussed above.
-
-Figure~\ref{fig:visual1} displays that the treatment effect estimates remain unbiased and the Type I error rates for testing the significance of the treatment on each response remain at the nominal level. We may additionally be curious about the Type II error rates; failing to find effects significant that truly exist in our generative model.  Figure~\ref{fig:visual2} displays that the midterm effect estimates are unbiased for the non-zero parameters in our generative model.  It also shows that the Type II error rate in fact \textit{decreases} as the dependence between student responses increases.  This implies that power for finding a truly significant effect \textit{increased} as the violation of independence increased.  
-
-Our simulations, under this generative model, have demonstrated that parameter estimates remain unbiased and error rates are not detrimentally effected by increasing dependence between student responses.  Thus concerns over violating the modeling assumption of independence between student responses are alleviated. 
-
-\begin{table}[hbtp]
-\centering
-\begin{tabular}{cccc} \hline
-$\eta$  & Pillai's Test & t-test (CI) & t-test (HT) \\
-& $\text{H}_o : \tau_1 = \tau_2 = 0$  & $\text{H}_o : \tau_1 = 0$ &  $\text{H}_o : \tau_2 = 0$\\ 
- \hline  
-\Sexpr{sprintf("%.1f",round(errorsummary[1,8],1))} & \Sexpr{sprintf("%.4f",round(errorsummary[1,7],4))} & \Sexpr{sprintf("%.4f",round(errorsummary[1,5],4))} &\Sexpr{sprintf("%.4f",round(errorsummary[1,6],4))} \\
-\Sexpr{sprintf("%.1f",round(errorsummary[2,8],1))} & \Sexpr{sprintf("%.4f",round(errorsummary[2,7],4))} & \Sexpr{sprintf("%.4f",round(errorsummary[2,5],4))} &\Sexpr{sprintf("%.4f",round(errorsummary[2,6],4))} \\
-\Sexpr{sprintf("%.1f",round(errorsummary[3,8],1))} & \Sexpr{sprintf("%.4f",round(errorsummary[3,7],4))} & \Sexpr{sprintf("%.4f",round(errorsummary[3,5],4))} &\Sexpr{sprintf("%.4f",round(errorsummary[3,6],4))} \\
-\Sexpr{sprintf("%.1f",round(errorsummary[4,8],1))} & \Sexpr{sprintf("%.4f",round(errorsummary[4,7],4))} & \Sexpr{sprintf("%.4f",round(errorsummary[4,5],4))} &\Sexpr{sprintf("%.4f",round(errorsummary[4,6],4))} \\
-\Sexpr{sprintf("%.1f",round(errorsummary[5,8],1))} & \Sexpr{sprintf("%.4f",round(errorsummary[5,7],4))} & \Sexpr{sprintf("%.4f",round(errorsummary[5,5],4))} &\Sexpr{sprintf("%.4f",round(errorsummary[5,6],4))} \\
-\Sexpr{sprintf("%.1f",round(errorsummary[6,8],1))} & \Sexpr{sprintf("%.4f",round(errorsummary[6,7],4))} & \Sexpr{sprintf("%.4f",round(errorsummary[6,5],4))} &\Sexpr{sprintf("%.4f",round(errorsummary[6,6],4))} \\
-\hline
-\end{tabular}
-\caption{Type I error rates for tests for curriculum treatment effect from 25,000 simulations at each $\eta$. All tests were conducted with a nominal significance level of $\alpha = 0.05$.}
-\label{tab:errorrates}
-\end{table}
-
-
-<<visual1, echo=FALSE , message=FALSE, warning=FALSE, fig.width=11, fig.height=3, out.width='.9\\linewidth', fig.pos='h',fig.align='center',fig.cap="Average curriculum treatment effects on each value in the simulated response pairs (left) and corresponding Type I error rates (right) from 25,000 simulations at each $\\eta$. The generative model set $\\tau_1 = \\tau_2 = 0$ and tests for significance were run using $\\alpha = 0.05$">>=
-library(ggplot2)
-library(reshape2)
-library(gridExtra)
-srm <- melt(simresults, id.var="eta", measure.var=c("trt1", "trt2"))
-levels(srm$variable) <- c("ConfMC","HypMC")
-p1 <- ggplot(aes(x=eta, y=value, group=variable), data=srm) + 
-  geom_hline(yintercept=0.00, colour="grey50") + theme_bw() + 
-  geom_point(size=4, aes(shape=variable)) + geom_line(aes(ltype=variable)) + ylim(c(-0.01,0.01)) + 
-  ylab("Estimated Treatment Effect") + xlab(expression(eta)) +
-  theme(legend.position="none")
-
-srm <- melt(errorsummary, id.var="eta", measure.var=c("T1ErrorRateBeta1", "T1ErrorRateBeta2"))
-levels(srm$variable) <- c("ConfMC","HypMC")
-p2 <- ggplot(aes(x=eta, y=value, group=variable), data=srm) + 
-  geom_hline(yintercept=0.05, colour="grey50") + theme_bw() + 
-  geom_point(size=4, aes(shape=variable)) + geom_line(aes(ltype=variable)) + ylim(c(0,0.06)) + 
-  ylab("Type I Error Rate") + xlab(expression(eta)) +
-  scale_shape_discrete(name="Treatment Effect", labels=c(expression(paste("  ",tau[1])),expression(tau[2]))) +
-  theme(legend.text = element_text(size = 12))
-
-grid.arrange(p1,p2,nrow=1, widths=c(1,1.4))
-@
-
-<<visual2, echo=FALSE , message=FALSE, warning=FALSE, fig.width=11, fig.height=3, out.width='.9\\linewidth', fig.pos='h',fig.align='center',fig.cap="Average midterm exam effects on each value in the simulated response pairs (left) and corresponding Type II error rates (right) from 25,000 simulations at each $\\eta$. The generative model set $\\beta_{11} = 0.0461$ and $\\beta_{12} = 0.0379 $ and tests for significance were run using $\\alpha = 0.05$.">>=
-srm <- melt(simresults, id.var="eta", measure.var=c("betamidterm1s", "betamidterm2s"))
-levels(srm$variable) <- c("ConfMC","HypMC")
-p1 <- ggplot(aes(x=eta, y=value, group=variable), data=srm) +
-  #geom_hline(yintercept=c(0.046132,0.037915), colour="grey50")+
-  theme_bw() + 
-  geom_point(size=4, aes(shape=variable)) + geom_line(aes(ltype=variable)) +
-  ylab("Estimated Midterm Effect") + xlab(expression(eta)) + ylim(c(0, 0.05))+
-  theme(legend.position="none")
-
-
-srm <- melt(errorsummary, id.var="eta", measure.var=c("T2ErrorRateBetaMidterm1", "T2ErrorRateBetaMidterm2"))
-levels(srm$variable) <- c("ConfMC","HypMC")
-p2 <- ggplot(aes(x=eta, y=value, group=variable), data=srm) + 
-  theme_bw() + 
-  geom_point(size=4, aes(shape=variable)) + geom_line(aes(ltype=variable)) +
-  ylab("Type II Error Rate") + xlab(expression(eta)) +
-  scale_shape_discrete(name="Midterm Coefficients", labels=c(expression(paste("  ",beta[11])),expression(beta[12]))) +
-  theme(legend.text = element_text(size = 12))
-grid.arrange(p1,p2,nrow=1, widths=c(1,1.4))
-@
-
-
-A final consideration is that in practice we might be dealing with a situation where there is a more complex covariance structure, where students of the same classrooms have more related scores than students of different classrooms. The rational is that students within the same physical environment may interact in ways that cause their responses to be more similar than students of different classrooms. In this situation we adjust the generative model (\ref{eq:linear}) to assume the covariance between student to be
-\[
-\Cov[\epsilon_{ik}, \epsilon_{jl}] = c \eta \sigma_{kl}^2, 
-\]
-where $c = 1$ for all students $i,j$ in same classroom, and $c \in [0,1] $ for students $i,j$ in different classrooms.  In this way, $c$ scales the covariance back for all students not sharing a classroom. We will refer to $c$ as the ``non-classmate covariance scaling parameter".  
-%We will bear in mind that this difference should not reflect a treatment effect, merely a covariance structure for items on the final exam due to the sharing of physical environments (i.e. inter-student conversation, physical differences in classroom).  We do not want $c$ to represent the differences caused by the administration of a curricula because this is considered a treatment effect, which is not supposed to exist in the generative model. We will simulate with $c$ rather close to 1 in the generative model.
-The simulation procedure otherwise follows the same five stage procedure described previously with $M = 10,000$ simulations at each combination of $\eta$ in $\{0,0.1,0.2,0.3,0.4\}$ and $c$ in $\{0.9, 0.925, 0.95, 0.975, 1.0\}$.
-
-Similar to the initial simulation, it was found that the parameter estimates remain unbiased as the violation of independence between student responses increases in this adapted generative model. There was also decreasing variability in the parameter estimates as $\eta$ and $c$ increase.
-
-Figure~\ref{fig:sim2plots} displays the Type I error rates for testing for treatment effects univariately using t-tests and bivariately using Pillai's overall test. What is clear is that the type I error rate climbs quickly when the non-classmate covariance scaling parameter decreases. This means that when the variance structure for observations more clearly aligns for students in the same classroom, it becomes more likely to observe a difference in the scores between classrooms.  
-
-Unfortunately, there is no way to estimate $c$ from our data, where classroom is entirely confounded with curricula treatment.  As such we will need to recognize that reliability of our results are contingent on the belief that the alternation of instruction, identical curricula administered with all students in the same room in weeks 1 to 8, and careful pedagogical preparation has minimized all non-treatment related differences that may have arisen due to the physically different classrooms in which the treatments were administered.
-
-<<ResultsClassroomSimulation, echo=FALSE, include=FALSE>>=
-errorsummary2 <- read.csv("C:\\Users\\Karsten\\Dropbox\\Dissertation\\CurriculumStudy\\SimulationStudy/Sim1000ClassCovResults.csv")
-@
-
-<<sim2plots, echo=FALSE , message=FALSE, warning=FALSE, fig.width=8, fig.height=3, out.width='.8\\linewidth', fig.pos='h',fig.align='center',fig.cap="Type I error rates for tests of treatment effects from 10,000 simulations at each combination of $\\eta \\in \\{0,0.1,0.2,0.3,0.4\\}$ and $c \\in \\{0.9,0.925,0.95,0.975,1.0\\}$. The nominal $\\alpha=0.05$ is displayed with the dashed line in each plot.", cache=TRUE>>=
-library(ggplot2)
-meltsim2 <- melt(errorsummary2, id=c("eta", "nonclassmate"))
-meltsim2$variable2 <- factor(meltsim2$variable, labels = c("H[o]: tau[1]==0", "H[o]: tau[2]==0", "Pillai"))
-qplot(eta, value, geom="path", data=meltsim2, colour=as.factor(nonclassmate), group=nonclassmate, size=I(1.2)) +
-  geom_point(size=I(1.6),colour=("Black"))+
-   facet_grid(. ~ variable2, labeller = label_parsed) +
-  xlab(expression(eta)) + ylab("Type I Error Rate") + 
-  theme_bw() + labs(colour='Non-classmate Variance
-Scaling Parameter (c)') + geom_hline(yintercept=0.05, linetype=2)+
-   geom_hline(yintercept=0, linetype=1)+
-  ylim(c(0,.50))+
-  scale_colour_manual(values = c("gray80","gray70","gray60","gray60","gray40"))
-@
-
+% \end{tabular}
+% \caption{Comparison of the standard deviation for the treatment effect estimates, $s_{\tau_k}$, and average from standard errors for the treatment effects, $\hat{\text{SE}}\left[\tau_k\right]$ from simulations under each $\eta$.}
+% \label{tab:simvarcompare}
+% \end{table}
+% %
+% Table~\ref{tab:errorrates} displays that the Type I error rates from the Pillai's test and each of the individual t-tests for curriculum treatment effects are stable around the nominal $\alpha = 0.05$ level for all $\eta$ values. Thus the violation of independence between student responses is not detrimental to the Type I error rates in this setting, where no treatment effects exists in our generative model.  The stability in the Type I errors is linked to the finding that the variability estimates used in testing are shrinking at approximately the same rate as the true sampling variability in the parameters estimates, as discussed above.
+% 
+% Figure~\ref{fig:visual1} displays that the treatment effect estimates remain unbiased and the Type I error rates for testing the significance of the treatment on each response remain at the nominal level. We may additionally be curious about the Type II error rates; failing to find effects significant that truly exist in our generative model.  Figure~\ref{fig:visual2} displays that the midterm effect estimates are unbiased for the non-zero parameters in our generative model.  It also shows that the Type II error rate in fact \textit{decreases} as the dependence between student responses increases.  This implies that power for finding a truly significant effect \textit{increased} as the violation of independence increased.  
+% 
+% Our simulations, under this generative model, have demonstrated that parameter estimates remain unbiased and error rates are not detrimentally effected by increasing dependence between student responses.  Thus concerns over violating the modeling assumption of independence between student responses are alleviated. 
+% 
+% \begin{table}[hbtp]
+% \centering
+% \begin{tabular}{cccc} \hline
+% $\eta$  & Pillai's Test & t-test (CI) & t-test (HT) \\
+% & $\text{H}_o : \tau_1 = \tau_2 = 0$  & $\text{H}_o : \tau_1 = 0$ &  $\text{H}_o : \tau_2 = 0$\\ 
+%  \hline  
+% \Sexpr{sprintf("%.1f",round(errorsummary[1,8],1))} & \Sexpr{sprintf("%.4f",round(errorsummary[1,7],4))} & \Sexpr{sprintf("%.4f",round(errorsummary[1,5],4))} &\Sexpr{sprintf("%.4f",round(errorsummary[1,6],4))} \\
+% \Sexpr{sprintf("%.1f",round(errorsummary[2,8],1))} & \Sexpr{sprintf("%.4f",round(errorsummary[2,7],4))} & \Sexpr{sprintf("%.4f",round(errorsummary[2,5],4))} &\Sexpr{sprintf("%.4f",round(errorsummary[2,6],4))} \\
+% \Sexpr{sprintf("%.1f",round(errorsummary[3,8],1))} & \Sexpr{sprintf("%.4f",round(errorsummary[3,7],4))} & \Sexpr{sprintf("%.4f",round(errorsummary[3,5],4))} &\Sexpr{sprintf("%.4f",round(errorsummary[3,6],4))} \\
+% \Sexpr{sprintf("%.1f",round(errorsummary[4,8],1))} & \Sexpr{sprintf("%.4f",round(errorsummary[4,7],4))} & \Sexpr{sprintf("%.4f",round(errorsummary[4,5],4))} &\Sexpr{sprintf("%.4f",round(errorsummary[4,6],4))} \\
+% \Sexpr{sprintf("%.1f",round(errorsummary[5,8],1))} & \Sexpr{sprintf("%.4f",round(errorsummary[5,7],4))} & \Sexpr{sprintf("%.4f",round(errorsummary[5,5],4))} &\Sexpr{sprintf("%.4f",round(errorsummary[5,6],4))} \\
+% \Sexpr{sprintf("%.1f",round(errorsummary[6,8],1))} & \Sexpr{sprintf("%.4f",round(errorsummary[6,7],4))} & \Sexpr{sprintf("%.4f",round(errorsummary[6,5],4))} &\Sexpr{sprintf("%.4f",round(errorsummary[6,6],4))} \\
+% \hline
+% \end{tabular}
+% \caption{Type I error rates for tests for curriculum treatment effect from 25,000 simulations at each $\eta$. All tests were conducted with a nominal significance level of $\alpha = 0.05$.}
+% \label{tab:errorrates}
+% \end{table}
+% 
+% 
+% <<visual1, echo=FALSE , message=FALSE, warning=FALSE, fig.width=11, fig.height=3, out.width='.9\\linewidth', fig.pos='h',fig.align='center',fig.cap="Average curriculum treatment effects on each value in the simulated response pairs (left) and corresponding Type I error rates (right) from 25,000 simulations at each $\\eta$. The generative model set $\\tau_1 = \\tau_2 = 0$ and tests for significance were run using $\\alpha = 0.05$">>=
+% library(ggplot2)
+% library(reshape2)
+% library(gridExtra)
+% srm <- melt(simresults, id.var="eta", measure.var=c("trt1", "trt2"))
+% levels(srm$variable) <- c("ConfMC","HypMC")
+% p1 <- ggplot(aes(x=eta, y=value, group=variable), data=srm) + 
+%   geom_hline(yintercept=0.00, colour="grey50") + theme_bw() + 
+%   geom_point(size=4, aes(shape=variable)) + geom_line(aes(ltype=variable)) + ylim(c(-0.01,0.01)) + 
+%   ylab("Estimated Treatment Effect") + xlab(expression(eta)) +
+%   theme(legend.position="none")
+% 
+% srm <- melt(errorsummary, id.var="eta", measure.var=c("T1ErrorRateBeta1", "T1ErrorRateBeta2"))
+% levels(srm$variable) <- c("ConfMC","HypMC")
+% p2 <- ggplot(aes(x=eta, y=value, group=variable), data=srm) + 
+%   geom_hline(yintercept=0.05, colour="grey50") + theme_bw() + 
+%   geom_point(size=4, aes(shape=variable)) + geom_line(aes(ltype=variable)) + ylim(c(0,0.06)) + 
+%   ylab("Type I Error Rate") + xlab(expression(eta)) +
+%   scale_shape_discrete(name="Treatment Effect", labels=c(expression(paste("  ",tau[1])),expression(tau[2]))) +
+%   theme(legend.text = element_text(size = 12))
+% 
+% grid.arrange(p1,p2,nrow=1, widths=c(1,1.4))
+% @
+% 
+% <<visual2, echo=FALSE , message=FALSE, warning=FALSE, fig.width=11, fig.height=3, out.width='.9\\linewidth', fig.pos='h',fig.align='center',fig.cap="Average midterm exam effects on each value in the simulated response pairs (left) and corresponding Type II error rates (right) from 25,000 simulations at each $\\eta$. The generative model set $\\beta_{11} = 0.0461$ and $\\beta_{12} = 0.0379 $ and tests for significance were run using $\\alpha = 0.05$.">>=
+% srm <- melt(simresults, id.var="eta", measure.var=c("betamidterm1s", "betamidterm2s"))
+% levels(srm$variable) <- c("ConfMC","HypMC")
+% p1 <- ggplot(aes(x=eta, y=value, group=variable), data=srm) +
+%   #geom_hline(yintercept=c(0.046132,0.037915), colour="grey50")+
+%   theme_bw() + 
+%   geom_point(size=4, aes(shape=variable)) + geom_line(aes(ltype=variable)) +
+%   ylab("Estimated Midterm Effect") + xlab(expression(eta)) + ylim(c(0, 0.05))+
+%   theme(legend.position="none")
+% 
+% 
+% srm <- melt(errorsummary, id.var="eta", measure.var=c("T2ErrorRateBetaMidterm1", "T2ErrorRateBetaMidterm2"))
+% levels(srm$variable) <- c("ConfMC","HypMC")
+% p2 <- ggplot(aes(x=eta, y=value, group=variable), data=srm) + 
+%   theme_bw() + 
+%   geom_point(size=4, aes(shape=variable)) + geom_line(aes(ltype=variable)) +
+%   ylab("Type II Error Rate") + xlab(expression(eta)) +
+%   scale_shape_discrete(name="Midterm Coefficients", labels=c(expression(paste("  ",beta[11])),expression(beta[12]))) +
+%   theme(legend.text = element_text(size = 12))
+% grid.arrange(p1,p2,nrow=1, widths=c(1,1.4))
+% @
+% 
+% 
+% A final consideration is that in practice we might be dealing with a situation where there is a more complex covariance structure, where students of the same classrooms have more related scores than students of different classrooms. The rational is that students within the same physical environment may interact in ways that cause their responses to be more similar than students of different classrooms. In this situation we adjust the generative model (\ref{eq:linear}) to assume the covariance between student to be
+% \[
+% \Cov[\epsilon_{ik}, \epsilon_{jl}] = c \eta \sigma_{kl}^2, 
+% \]
+% where $c = 1$ for all students $i,j$ in same classroom, and $c \in [0,1] $ for students $i,j$ in different classrooms.  In this way, $c$ scales the covariance back for all students not sharing a classroom. We will refer to $c$ as the ``non-classmate covariance scaling parameter".  
+% %We will bear in mind that this difference should not reflect a treatment effect, merely a covariance structure for items on the final exam due to the sharing of physical environments (i.e. inter-student conversation, physical differences in classroom).  We do not want $c$ to represent the differences caused by the administration of a curricula because this is considered a treatment effect, which is not supposed to exist in the generative model. We will simulate with $c$ rather close to 1 in the generative model.
+% The simulation procedure otherwise follows the same five stage procedure described previously with $M = 10,000$ simulations at each combination of $\eta$ in $\{0,0.1,0.2,0.3,0.4\}$ and $c$ in $\{0.9, 0.925, 0.95, 0.975, 1.0\}$.
+% 
+% Similar to the initial simulation, it was found that the parameter estimates remain unbiased as the violation of independence between student responses increases in this adapted generative model. There was also decreasing variability in the parameter estimates as $\eta$ and $c$ increase.
+% 
+% Figure~\ref{fig:sim2plots} displays the Type I error rates for testing for treatment effects univariately using t-tests and bivariately using Pillai's overall test. What is clear is that the type I error rate climbs quickly when the non-classmate covariance scaling parameter decreases. This means that when the variance structure for observations more clearly aligns for students in the same classroom, it becomes more likely to observe a difference in the scores between classrooms.  
+% 
+% Unfortunately, there is no way to estimate $c$ from our data, where classroom is entirely confounded with curricula treatment.  As such we will need to recognize that reliability of our results are contingent on the belief that the alternation of instruction, identical curricula administered with all students in the same room in weeks 1 to 8, and careful pedagogical preparation has minimized all non-treatment related differences that may have arisen due to the physically different classrooms in which the treatments were administered.
+% 
+% <<ResultsClassroomSimulation, echo=FALSE, include=FALSE>>=
+% errorsummary2 <- read.csv("C:\\Users\\Karsten\\Dropbox\\Dissertation\\CurriculumStudy\\SimulationStudy/Sim1000ClassCovResults.csv")
+% @
+% 
+% <<sim2plots, echo=FALSE , message=FALSE, warning=FALSE, fig.width=8, fig.height=3, out.width='.8\\linewidth', fig.pos='h',fig.align='center',fig.cap="Type I error rates for tests of treatment effects from 10,000 simulations at each combination of $\\eta \\in \\{0,0.1,0.2,0.3,0.4\\}$ and $c \\in \\{0.9,0.925,0.95,0.975,1.0\\}$. The nominal $\\alpha=0.05$ is displayed with the dashed line in each plot.", cache=TRUE>>=
+% library(ggplot2)
+% meltsim2 <- melt(errorsummary2, id=c("eta", "nonclassmate"))
+% meltsim2$variable2 <- factor(meltsim2$variable, labels = c("H[o]: tau[1]==0", "H[o]: tau[2]==0", "Pillai"))
+% qplot(eta, value, geom="path", data=meltsim2, colour=as.factor(nonclassmate), group=nonclassmate, size=I(1.2)) +
+%   geom_point(size=I(1.6),colour=("Black"))+
+%    facet_grid(. ~ variable2, labeller = label_parsed) +
+%   xlab(expression(eta)) + ylab("Type I Error Rate") + 
+%   theme_bw() + labs(colour='Non-classmate Variance
+% Scaling Parameter (c)') + geom_hline(yintercept=0.05, linetype=2)+
+%    geom_hline(yintercept=0, linetype=1)+
+%   ylim(c(0,.50))+
+%   scale_colour_manual(values = c("gray80","gray70","gray60","gray60","gray40"))
+% @
+% 
 
 
 \subsection{ARTIST Model Diagnostics}
