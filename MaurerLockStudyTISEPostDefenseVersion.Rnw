@@ -734,7 +734,7 @@ for $i \in \left\{1,\dots,n\right\}$, $j \in \left\{1,2,3,4\right\}$, $k \in \le
  \right).
 \]
 %
-Thus the variance structure for the responses includes common variance components $\sigma_{\ell\ell'}$ and scaling parameters $z$, $g$ and $d$. The variance components $\sigma_{\ell\ell'}$ values estimated from the original ARTIST model are used as plug-in estimates for simulating from the generative model. The scaling parameter $z$ controls the variability that is common between all student responses; thus $z \sigma_{\ell\ell'}$ is the baseline covariance of responses for students from that do no share lecture or lab sections. The scaling parameter $g$ controls the additive increase to covariance between students of the same lecture section, $g \sigma_{\ell\ell'}$, and $d$ controls the additive increase to covariance between students of the same lab section, $d \sigma_{\ell\ell'}$. If each of these variance scaling parameters is set to zero, there is no violation to the assumption of independence between students; thus making the variance structure of the generative model~\ref{eq:simgenerative} match the error structure of the ARTIST model~\ref{eq:mancova}. However, these parameters may be adjusted to violate the independence assumption in different ways.}
+Thus the variance structure for the responses includes common variance components $\sigma_{\ell\ell'}$ and scaling parameters $z$, $g$ and $d$. The variance components $\sigma_{\ell\ell'}$ values estimated from the original ARTIST model are used as plug-in estimates for simulating from the generative model. The scaling parameter $z$ controls the variability that is common between all student responses; thus $z \sigma_{\ell\ell'}$ is the covariance of responses for ARTIST sets $\ell$ and $\ell'$ between students that do no share lecture or lab sections. The scaling parameter $g$ controls the additive increase to covariance between students of the same lecture section, $g \sigma_{\ell\ell'}$, and $d$ controls the additive increase to covariance between students of the same lab section, $d \sigma_{\ell\ell'}$. If each of these variance scaling parameters is set to zero, there is no violation to the assumption of independence between students; thus making the variance structure of the generative model~\ref{eq:simgenerative} match the error structure of the ARTIST model~\ref{eq:mancova}. However, these parameters may be adjusted to violate the independence assumption in different ways.}
 
 \km{
 The simulation procedure for assessing the Type 1 error rates under a violation independence between student responses is conducted in a five step process. We consider with violations with all combinations of $d \in \{0,0.02,0.04,0.06,0.08,0.1\}$ and $g \in \{0,0.02,0.04,0.06,0.08,0.1\}$. We set $z$=0 for all simulations because a random effect that is common to \textit{all} students within will not effect tests for a curriculum effect (i.e. the difference in average responses remains constant). For each combination of variance scaling parameters we repeat the following simulation process for $m \in \{1,\dots,20000\}$: 
@@ -838,12 +838,14 @@ The evidence of improved learning outcomes is also contingent on the efficacy of
 \km{ This study is unable to draw reliable inferential evidence on the efficacy of simulation-based methods for teaching statistical inference due to the volatility of the Type 1 error rates under minor violations to model assumptions. This is a fundamental problem for all comparative educational studies where pedagogical treatments are administered on the class level and measurements are taken the individual student level. Viewed as a case study of two curricula administered within extremely similar student groups, we found that simulation-based curriculum had a noticeable improvement in learning outcomes associated with confidence intervals and a small improvement in learning outcomes associated with hypothesis testing. While the results are clearly not conclusive in assessing the curricular effect on learning outcomes, the findings do merit further consideration into the pedagogical benefits of a simulation-based curriculum. }
 
 
+\newpage
+
 %-------------------------------------------------------
 
 \section{Appendix: Final Exam Used in Curricula Study}
 \label{appendA}
 
-The following appendix ... lots of final exam stuff
+The following appendix ... (removed from draft)
 
 
 %-------------------------------------------------------
@@ -851,7 +853,7 @@ The following appendix ... lots of final exam stuff
 \section{Appendix: Midterm Exam Used in Curricula Study}
 \label{appMidtermExamQuestions}
 
-The following appendix ... lots of midterm exam stuff
+The following appendix ... (removed from draft)
 
 %-------------------------------------------------------
 \section{Appendix: MANCOVA Model Diagnostics}
