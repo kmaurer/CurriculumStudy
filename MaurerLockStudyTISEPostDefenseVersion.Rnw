@@ -15,7 +15,7 @@
 \usepackage{amsmath}
 
 \newcommand{\hh}[1]{{\color{blue} #1}} 
-\newcommand{\km}[1]{{\color{red} #1}} 
+\newcommand{\km}[1]{{\color{black} #1}} 
 
 \newcommand{\distas}[1]{\mathbin{\overset{#1}{\sim}}}%
 
@@ -93,14 +93,14 @@ The preliminary research shows promising results for the simulation-based approa
 \section{Methodology}
 \label{methods}
 
-The subjects for this study were students enrolled in two sections of the Introduction to Statistics, Stat 104, course at \textbf{University Name Omitted} in the spring semester of 2014. Stat 104 is an introductory statistics course tailored for students in the agricultural and biological sciences. Of the 112 students to complete the course, 101 students consented to the release of their course data for the purposes of this study.   The students who did not consent were treated identically to those who consented, but their data was omitted from the analysis that follows.  Students from both sections were randomly assigned to one of the two inference curriculum treatments, creating cohorts A,C and B,D, respectively. Cohorts A and B were exposed to the simulation-based curriculum; while the cohorts C and D were exposed to the traditional curriculum. Student cohorts were the basic units to which room assignments, instruction and curriculum treatments were applied.
+The subjects for this study were students enrolled in two sections of the Introduction to Statistics, Stat 104, course at Iowa State University in the spring semester of 2014. Stat 104 is an introductory statistics course tailored for students in the agricultural and biological sciences. Of the 112 students to complete the course, 101 students consented to the release of their course data for the purposes of this study.   The students who did not consent were treated identically to those who consented, but their data was omitted from the analysis that follows.  Students from both sections were randomly assigned to one of the two inference curriculum treatments, creating cohorts A,C and B,D, respectively. Cohorts A and B were exposed to the simulation-based curriculum; while the cohorts C and D were exposed to the traditional curriculum. Student cohorts were the basic units to which room assignments, instruction and curriculum treatments were applied.
 
 The course was administered by the authors in a co-teaching setting for students from all cohorts. The course schedule involved two hours of lecture and two hours of lab per week.  The co-teaching strategy was employed as an intentional attribute of the experimental design. The following subsections will detail the curriculum outline for each cohort of students, the experimental design for administering the curricula using the strengths of the co-teaching setup and the data collected for analysis.
 %-----------------------------------------------------
 \subsection{Curricula Structures}
 \label{curric}
 
-To compare the learning outcomes for students receiving the traditional and simulation-based inference curricula we first needed to prepare a curriculum for each approach.  Both curricula needed to satisfy the course guidelines set by the Department of Statistics at \textbf{University Name Omitted}, covering the following topics: univariate and bivariate descriptive statistics, linear regression, experimental design, basic probability rules, the binomial distribution, the normal distribution, sampling distributions, and inference on means and proportions. Each curriculum was composed of lecture, corresponding lecture notes, weekly lab assignments designed for groups of four to five students, weekly homework assignments, a midterm exam and a cumulative final exam.  The curricula materials for the course did not require the use of a textbook, however specific textbooks that roughly follow the structure of each curriculum were recommended as supplementary study materials (\citealt{AgrestiFranklin}; \citealt{Lock5}).
+To compare the learning outcomes for students receiving the traditional and simulation-based inference curricula we first needed to prepare a curriculum for each approach.  Both curricula needed to satisfy the course guidelines set by the Department of Statistics at Iowa State University, covering the following topics: univariate and bivariate descriptive statistics, linear regression, experimental design, basic probability rules, the binomial distribution, the normal distribution, sampling distributions, and inference on means and proportions. Each curriculum was composed of lecture, corresponding lecture notes, weekly lab assignments designed for groups of four to five students, weekly homework assignments, a midterm exam and a cumulative final exam.  The curricula materials for the course did not require the use of a textbook, however specific textbooks that roughly follow the structure of each curriculum were recommended as supplementary study materials (\citealt{AgrestiFranklin}; \citealt{Lock5}).
 
 Figure~\ref{fig:CurricSched} outlines how these topics were structured within a weekly schedule for the sixteen week semester for each curriculum.  Note that students from all cohorts were exposed to an identical curriculum for all non-inference related topics in the course. This includes identical lecture, course notes, homework assignments, lab assignments and midterm exam during the first half of the semester.
 
@@ -114,7 +114,7 @@ Starting at week 9 the curricula diverge into their respective approaches to inf
 
 Cohorts C and D progressed through the traditional approach by first learning the normal distribution and use of the normal tables. They were then introduced to applications of the normal approximation within inference.  The traditional curriculum utilized simulation to display concepts, but only to the extent of demonstrating that sampling distributions can be approximated by normal distributions under certain conditions.  
 
-During the second half of the semester the lectures, course note, homework and lab assignments differed between the two curricula.  However, homework and lab assignments were kept similar when they covered similar topics.  For example, all cohorts covered the topic of sampling distributions so the lab assignments were nearly identical between the two groups with the exception of a question pertaining to the normal approximation included for the traditional cohorts.  By the end of the semester all cohorts covered how to conduct inference using normal theory; however cohorts A and B additionally learned the core concepts of inference using simulation-based methods prior to learning traditional theory-based inference methods.  
+During the second half of the semester the lectures, course notes, homework and lab assignments differed between the two curricula.  However, homework and lab assignments were kept similar when they covered similar topics.  For example, all cohorts covered the topic of sampling distributions so the lab assignments were nearly identical between the two groups with the exception of a question pertaining to the normal approximation included for the traditional cohorts.  By the end of the semester all cohorts covered how to conduct inference using normal theory; however cohorts A and B additionally learned the core concepts of inference using simulation-based methods prior to learning traditional theory-based inference methods.  
 
 %-----------------------------------------------------
 \subsection{Experimental Design}
@@ -140,7 +140,7 @@ Assigning one instructor to each curriculum would confound the instructor effect
 \subsection{Data Collection}
 \label{datacollect}
 
-In order to measure learning outcomes for specific inference concepts we utilized question sets from the Assessment Resource Tools for Improving Statistical Thinking (ARTIST) for the topics of confidence intervals and hypothesis testing \citep{ARTIST}.  The ARTIST scaled question sets each consist of 10 multiple choice questions that are geared toward critical thinking about the inference topic.  These questions were administered as part of the written final exam for all students on the same day and time. The ARTIST scaled scores for the topics of confidence interval and hypothesis testing were recorded for each student. The multiple choice questions for the ARTIST scaled topics can be found in Appendix~\ref{appendA}.
+In order to measure learning outcomes for specific inference concepts we utilized question sets from the Assessment Resource Tools for Improving Statistical Thinking (ARTIST) for the topics of confidence intervals and hypothesis testing \citep{ARTIST}.  The ARTIST scaled question sets each consist of 10 multiple choice questions that are geared toward critical thinking and statistical literacy within each inference topic.  These questions were administered as part of the written final exam for all students on the same day and time. The ARTIST scaled scores for the topics of confidence interval and hypothesis testing were recorded for each student. The multiple choice questions for the ARTIST scaled topics can be found in Appendix~\ref{appendA}.
 
 The final exam also included two problems that tested the student's ability to conduct statistical inference in an applied setting using theory-based methodology. Each problem was based on a hypothetical scenario where data has been collected and inference needed to be conducted using the traditional approach using formulas and tables. The first problem provided data summaries and students needed to construct and interpret a confidence interval for a single population mean. The second problem required students to conduct a hypothesis test for a single proportion based on another set of data summaries. The applied inference problem scores for each student are not used for the primary analysis on learning outcomes but are included for an interesting peripheral analysis on student ability to conduct inference using traditional theory-based methods. The applied inference problems and grading rubrics can also be found in Appendix~\ref{appendA}. The exams were graded blindly, with no identifying information of the student or treatment visible during the grading process.
 
@@ -196,12 +196,18 @@ themeForMultHist <- theme(plot.margin=unit(c(1,0,1,0), "cm"),
 p1 <- qplot(midterm, data=dat, facets = treatment ~ ., binwidth=8, origin=4) + theme_bw()  +  
   xlab("Score (Out of 100)") + ggtitle("Midterm Exam") +
   #ylim(yscale) +
+  #add mean labels
   geom_text(aes(x, y, label=lab), 
     data=data.frame(x=-1,y=12, lab=c(paste("mean =",trtsumstats[1,2]),paste("mean =",trtsumstats[2,2])) ,
     treatment=c("Simulation-Based","Traditional")), hjust=0, vjust=1, size= rel(sumstatfont)  )  + 
+  #add sd labels
   geom_text(aes(x, y, label=lab), 
     data=data.frame(x=-1,y=.85*12, lab=c(paste("sd =",trtsumstats[1,3]), paste("sd =",trtsumstats[2,3])) ,
     treatment=c("Simulation-Based","Traditional")), hjust=0, vjust=1, size= rel(sumstatfont)    )+
+  #add n label
+  geom_text(aes(x, y, label=lab), 
+    data=data.frame(x=-1,y=.7*12, lab=paste("n =",rep(c("51","50"))) ,
+    treatment=c("Simulation-Based","Traditional")), hjust=0, vjust=1, size= rel(sumstatfont)    ) +
   themeForMultHist + 
   scale_x_continuous(limits=c(-1, 100),breaks=seq(from=0, to=100, by=25))
 
@@ -216,6 +222,10 @@ p2 <- qplot(ConfMC, data=dat, facets = treatment ~ ., binwidth=1) + theme_bw() +
     data=data.frame(x=-1,y=.85*12, lab=c(paste("sd =",trtsumstats[1,5]),
                                     paste("sd =",trtsumstats[2,5])) ,
     treatment=c("Simulation-Based","Traditional")), hjust=0, vjust=1, size= rel(sumstatfont)    )+
+  #add n label
+  geom_text(aes(x, y, label=lab), 
+    data=data.frame(x=-1,y=.7*12, lab=paste("n =",rep(c("51","50"))) ,
+    treatment=c("Simulation-Based","Traditional")), hjust=0, vjust=1, size= rel(sumstatfont)    ) +
   themeForMultHist + 
   scale_x_continuous(limits=c(-1, 11),breaks=seq(from=0, to=10, by=2))
 
@@ -231,6 +241,10 @@ p3 <- qplot(HypMC, data=dat, facets = treatment ~ ., binwidth=1) + theme_bw() +
     data=data.frame(x=-1,y=.85*13, lab=c(paste("sd =",trtsumstats[1,7]),
                                     paste("sd =",trtsumstats[2,7])) ,
     treatment=c("Simulation-Based","Traditional")), hjust=0, vjust=1 , size= rel(sumstatfont)   )+
+  #add n label
+  geom_text(aes(x, y, label=lab), 
+    data=data.frame(x=-1,y=.7*13, lab=paste("n =",rep(c("51","50"))) ,
+    treatment=c("Simulation-Based","Traditional")), hjust=0, vjust=1, size= rel(sumstatfont)    ) +
   themeForMultHist + 
   scale_x_continuous(limits=c(-1, 11),breaks=seq(from=0, to=10, by=2))
 
@@ -245,6 +259,10 @@ p4 <- qplot(AppliedCI, data=dat, facets = treatment ~ ., binwidth=1) + theme_bw(
     data=data.frame(x=-1,y=.85*24, lab=c(paste("sd =",trtsumstats[1,9]),
                                     paste("sd =",trtsumstats[2,9])) ,
     treatment=c("Simulation-Based","Traditional")), hjust=0, vjust=1 , size= rel(sumstatfont)   )+
+  #add n label
+  geom_text(aes(x, y, label=lab), 
+    data=data.frame(x=-1,y=.7*24, lab=paste("n =",rep(c("51","50"))) ,
+    treatment=c("Simulation-Based","Traditional")), hjust=0, vjust=1, size= rel(sumstatfont)    ) +
   themeForMultHist+ 
   scale_x_continuous(limits=c(-1, 13),breaks=seq(from=0, to=12, by=4))
 
@@ -259,6 +277,10 @@ p5 <- qplot(AppliedHT, data=dat, facets = treatment ~ ., binwidth=1) + theme_bw(
     data=data.frame(x=-1,y=.85*19, lab=c(paste("sd =",trtsumstats[1,11]),
                                     paste("sd =",trtsumstats[2,11])) ,
     treatment=c("Simulation-Based","Traditional")), hjust=0, vjust=1 , size= rel(sumstatfont)   )+
+  #add n label
+  geom_text(aes(x, y, label=lab), 
+    data=data.frame(x=-1,y=.7*19, lab=paste("n =",rep(c("51","50"))) ,
+    treatment=c("Simulation-Based","Traditional")), hjust=0, vjust=1, size= rel(sumstatfont)    ) +
   themeForMultHist + 
   scale_x_continuous(limits=c(-1, 12),breaks=seq(from=0, to=12, by=4))
 
@@ -494,13 +516,13 @@ ScheffeInts
 ### SCHEFFE'S DOESN'T WORK IN MANCOVA SETTING
 @
 
-To test for overall covariate effects on the multivariate responses we use Pillai's $\Lambda$. Table~\ref{tab:overallmod} shows a weak overall effect of the curriculum treatment on the paired ARTIST scaled topic scores.  This prompts us to investigate the treatment effect on the ARTIST scaled topic scores for confidence intervals and hypothesis tests separately, to see if the weak overall effect is driven by a significant effect on one of the two scores.\\
+To test for overall covariate effects on the multivariate responses we use Pillai's $\Lambda$, a statistic which reflects the amount of variability in the bivariate responses explained by a covariate. Table~\ref{tab:overallmod} shows a weak overall effect of the curriculum treatment on the paired ARTIST scaled topic scores.  This prompts us to investigate the treatment effect on the ARTIST scaled topic scores for confidence intervals and hypothesis tests separately, to see if the weak overall effect is driven by a significant effect on one of the two scores.\\
 
 \begin{table}[hbtp]
 \centering
 \caption[Pillai's tests for bivariate effects in ARTIST model.]{Tests for bivariate effects on ARTIST question scores using Pillai's $\Lambda$.}
 \begin{tabular}{lrrr} \hline
- & Pillai's $\Lambda$ & Approx. F & Pr($>$$|$F$|$)\\ 
+ & Pillai's $\Lambda$ & Approx. F & p-value\\ 
  \hline  
 Midterm & \Sexpr{sprintf("%.4f",round(summarytab[1,2],4))} & \Sexpr{sprintf("%.4f",round(summarytab[1,3],4))} &
 \Sexpr{sprintf("%.4f",round(summarytab[1,6],6))}\\ 
@@ -513,7 +535,9 @@ Treatment & \Sexpr{sprintf("%.4f",round(summarytab[3,2],4))} & \Sexpr{sprintf("%
 \label{tab:overallmod}
 \end{table}
 %
-To investigate the effect of the curriculum treatment on each ARTIST scaled topic score, we analyze the two underlying linear models that comprise the overall MANCOVA model. Table~\ref{tab:cimod} displays the coefficients of the linear model fit to the ARTIST scaled score for confidence interval learning outcomes along with covariate ranges to provide context to coefficient magnitudes. It should be noted that although the midterm and lab scores were recorded discretely, they were treated as continuous covariates when fitting the model. We find that midterm, lab 5 and the curriculum treatment effect are significant. Specifically, the simulation-based inference group scored significantly higher by 0.7149 out of a possible 10 points, a 7.146\% improvement in confidence interval learning outcomes on the ARTIST scale while controlling for midterm and lab 5 scores.\\
+To investigate the effect of the curriculum treatment on each ARTIST scaled topic score, we analyze the two underlying linear models that comprise the overall MANCOVA model. Table~\ref{tab:cimod} displays the coefficients of the linear model fit to the ARTIST scaled score for confidence interval learning outcomes along with covariate ranges to provide context to coefficient magnitudes. It should be noted that although the midterm and lab scores were recorded discretely, they were treated as continuous covariates when fitting the model. We find that midterm, lab 5 and the curriculum treatment effect are significant. Specifically, the simulation-based inference group scored significantly higher by 0.7146 out of a possible 10 points, a 7.146\% improvement in confidence interval learning outcomes on the ARTIST scale while controlling for midterm and lab 5 scores.
+
+Table~\ref{tab:htmod} displays the coefficients of the linear model fit to the ARTIST scaled score for hypothesis test learning outcomes.  We find that only the midterm score is significant for predicting learning outcomes for hypothesis testing. There was no significant curriculum treatment effect. \\
 
 % latex table generated in R 3.0.2 by xtable 1.7-3 package
 % Tue Jul 29 15:46:21 2014
@@ -533,7 +557,6 @@ Intercept & 1 & \Sexpr{sprintf("%.4f",round(CIcis[1,3],6))} & \Sexpr{paste("(",s
 \label{tab:cimod}
 \end{table}
 %
-Table~\ref{tab:htmod} displays the coefficients of the linear model fit to the ARTIST scaled score for hypothesis test learning outcomes.  We find that only the midterm score is significant for predicting learning outcomes for hypothesis testing. There was no significant curriculum treatment effect. \\
 
 % latex table generated in R 3.0.2 by xtable 1.7-3 package
 % Tue Jul 29 15:41:44 2014
@@ -624,7 +647,7 @@ qplot(mod1small$fitted.values[,2] ,mod1small$residuals[,2]) +
 \centering
 \caption[Pillai's tests for bivariate effects in Applied model.]{Tests for bivariate effects on Applied question scores using Pillai's $\Lambda$.}
 \begin{tabular}{lrrr} \hline
- & Pillai's $\Lambda$ & Approx. F & Pr($>$$|$F$|$)\\ 
+ & Pillai's $\Lambda$ & Approx. F & p-value\\ 
  \hline  
 Midterm & \Sexpr{sprintf("%.4f",round(summarytab1[1,2],4))} & \Sexpr{sprintf("%.4f",round(summarytab1[1,3],4))} &
 \Sexpr{sprintf("%.4f",round(summarytab1[1,6],6))}\\ 
@@ -657,8 +680,8 @@ The bivariate MANCOVA models that were employed in Sections~\ref{ArtistModel}~an
 y_{ijk\ell} = \left[ \beta_{0k} + x_{ijk1}\beta_{k1} + x_{ijk2}\beta_{k2} \right] + \left[ \eta_{\ell} + \gamma_{k\ell} + \delta_{jk\ell} + \epsilon_{ijk\ell} \right],
 \end{eqnarray}
 %
-for $i \in \left\{1,\dots,n\right\}$, $j \in \left\{1,2,3,4\right\}$, $k \in \left\{1,2\right\}$, and $\ell \in \left\{1,2\right\}$.  Where $y_{ijkl}$ is the $\ell^{th}$ response from student $i$ who is in lab section $j$ and lecture section $k$. The fixed effects portion of the model, within the first square brackets, is defined identically to the original ARTIST model~(\ref{eq:mancova}). In the generative model the $\beta$ coefficients are set equal to the corresponding coefficient estimates from the original ARTIST model. The remaining terms, $\eta_{\ell}$, $\gamma_{k\ell}$, $\delta_{jk\ell}$, and $\epsilon_{ijk\ell}$ are random effects for responses, lecture sections, lab sections and individual errors, respectively, distributed as follows
-%
+for $i \in \left\{1,\dots,n\right\}$, $j \in \left\{1,2,3,4\right\}$, $k \in \left\{1,2\right\}$, and $\ell \in \left\{1,2\right\}$.  Where $y_{ijkl}$ is the $\ell^{th}$ response from student $i$ who is in lab section $j$ and lecture section $k$. The fixed effects portion of the model, within the first square brackets, is defined identically to the original ARTIST model~(\ref{eq:mancova}). In the generative model the $\beta$ coefficients are set equal to the corresponding coefficient estimates from the original ARTIST model. The remaining terms, $\eta_{\ell}$, $\gamma_{k\ell}$, $\delta_{jk\ell}$, and $\epsilon_{ijk\ell}$ are random effects for responses, lecture sections, lab sections and individual errors, respectively, distributed as follows\\
+
 \[
 \vec{\epsilon}_{ijk} = 
 \begin{bmatrix}

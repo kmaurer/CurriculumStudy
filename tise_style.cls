@@ -64,7 +64,7 @@
 \newcommand{\Reviewauthor}[1]{\def\@Reviewauthor{#1}}
 %% defaults
 %\author{ Author 1 \hspace{1in}  Author 2   \\ \hspace{.2in}  Institution \hspace{.8in} Institution }
-\author{ Author 1 \hspace{1in}  Author 2   \\ \hspace{.05in}  Institution \hspace{1.05in} Institution }
+\author{ Karsten Maurer \hspace{1in}  Dennis Lock  \\ \hspace{.42in}  Miami University \hspace{1.15in} Iowa State University }
 \title{Comparison of Learning Outcomes for Simulation-Based and Traditional Inference Curricula in a Designed Educational Experiment}
 \Abstract{---!!!---an abstract is required---!!!---}
 \Plainauthor{\@author}
