@@ -1,0 +1,647 @@
+\documentclass[smallextended, natbib]{tise_style_supplemental} 
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{graphicx,float,wrapfig,subfig,tabularx,ulem}
+\graphicspath{{figure/}}
+\usepackage{csquotes}
+\usepackage{color}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{url}
+\usepackage{bbm}
+\usepackage{amsmath}
+
+\newcommand{\hh}[1]{{\color{blue} #1}} 
+\newcommand{\km}[1]{{\color{black} #1}} 
+
+\newcommand{\distas}[1]{\mathbin{\overset{#1}{\sim}}}%
+
+\newcommand{\Cov}{\text{Cov}}%
+
+\begin{document}
+
+%opening
+
+\title{Comparison of Learning Outcomes for Simulation-Based and Traditional Inference Curricula in a Designed Educational Experiment}
+\author{Karsten Maurer \hspace{1in} Miami University \\
+        Dennis Lock \hspace{1in} Iowa State University}
+%\institute{K. Maurer \and D. Lock
+%        \at Iowa State University, Ames, IA, USA}
+
+\maketitle
+
+<<setup,echo=F,include=F,eval=T>>=
+### Preliminaries 
+## Load Packages
+library(car)
+library(ggplot2)
+library(subselect)
+library(qtlmt)
+library(multcomp)
+library(lattice)
+library(gridExtra)
+library(reshape2)
+library(plyr)
+library(boot)
+library(grid)
+
+
+## Load Data
+# setwd("C:\\Users\\Karsten\\Dropbox\\Dissertation\\CurriculumStudy\\DraftTISE")
+dat <- read.csv("data/DataForStudyAnalysis.csv",header=T)
+#change factor level order to put sweeney as default control group
+dat$room <- factor(dat$room.x, levels=c("sweeney", "kildee"))
+dat$lab5perc <- dat$lab5perc * 100
+dat$hw2perc <- dat$hw2perc * 100
+dat$treatment <- "Simulation-Based"
+dat$treatment[which(dat$room=="sweeney")] <- "Traditional"
+
+errorsummary2 <- read.csv("data/errorsummary2.csv")
+
+
+
+dat$treatment <- "Simulation-Based"
+dat$treatment[which(dat$room=="sweeney")] <- "Traditional"
+library(plyr)
+
+smalldat <- dat[,c("treatment","midterm","ConfMC","HypMC","AppliedCI","AppliedHT")]
+meltsmall <- melt(smalldat, id=c("treatment"))
+# Wont ply properly in knit, write then read to work around... dumb
+# trtsumstats <- ddply(dat, .(treatment), summarize,
+#                    avgmidterm = round(mean(midterm),1 ), 
+#                    sdmidterm = round(sd(midterm), 2 ), 
+#                    avgConfMC = round(mean(ConfMC),1 ), 
+#                    sdConfMC = round(sd(ConfMC), 2 ), 
+#                    avgHypMC = sprintf("%.1f",round(mean(HypMC),1 )), 
+#                    sdHypMC = round(sd(HypMC), 2 ), 
+#                    avgAppliedCI = round(mean(AppliedCI),1 ), 
+#                    sdAppliedCI = round(sd(AppliedCI), 2 ), 
+#                    avgAppliedHT = round(mean(AppliedHT), 1 ), 
+#                    sdAppliedHT = round(sd(AppliedHT), 2 )  ) 
+
+# write.csv(trtsumstats, "trtsumstats.csv", row.names=FALSE)
+trtsumstats <- read.csv("trtsumstats.csv", header=T)
+
+titlesize =1.5
+xaxissize =1.3
+sumstatfont = 6
+yscale <- c(0,25)
+
+@
+
+
+<<ARTISTModSelectDiag,echo=F,include=F,eval=T>>=
+### Build MANCOVA model for ARTIST scaled multiple choice scores for CI and HT
+## Backward Stepwise Selection Using AIC as selection criterion
+#start with biggest possible model
+mod2 <- lm(cbind(ConfMC,HypMC)~ midterm + Section +
+             hw1perc +  hw2perc + hw3perc + hw4perc + hw5perc + hw6perc + hw7perc +
+            lab1perc +lab2perc +lab3perc +lab4perc +lab5perc +lab6perc + lab7perc +  room , data=dat)
+summary(manova(mod2))
+#backward stepwise to reduce model
+mod2backward <- mStep(mod2, k=2, trace=TRUE) #k=2 means to use AIC
+summary(manova(mod2backward))
+#removal of lab2, hw4 due to p-values over .1 
+#also remove hw5 due to worries about colinearity with lab5 (same topics)
+mod2small <- update(mod2backward, .~. -  lab2perc - hw4perc - hw5perc)
+summary(manova(mod2small), tests=c("Pillai","Wilks"))
+summarytab <- summary(manova(mod2small))$stats
+#significant overall effects: midterm and lab5 (random sampling lab)
+#weak overall effect of treatment
+summary(mod2small)
+mod2smallCI <- lm(ConfMC~ midterm + lab5perc + room, data=dat)
+summary(mod2smallCI)
+CIcis <- data.frame(confint(mod2smallCI,level=.95))
+CIcis$ests <- mod2smallCI$coeff
+mod2smallHT <- lm(HypMC~ midterm + lab5perc + room, data=dat)
+summary(mod2smallHT)
+HTcis <- data.frame(confint(mod2smallHT,level=.95))
+HTcis$ests <- mod2smallHT$coeff
+#individually there is a significant effect of treatment on CI score
+  #multiple comparisons adjustment ?!?!
+
+
+#individually there is no significant effect of treatment on HT score
+
+#--------------------------------------------------
+### Check Conditions for MANCOVA linear model fit
+## check response correlations to avoid colinearity in multivariate model
+#Rule of Thumb: ~ .3 to .55 then MANCOVA will work well
+with(dat, cor(ConfMC,HypMC)) #Not overly correlated
+
+## Normality of responses
+#qplot(dat$ConfMC)
+#qplot(dat$HypMC)
+#each is reasonably normal univariately
+#qplot(dat$ConfMC,dat$HypMC) + geom_jitter()
+# reasonable bivariate normal
+
+## check residual plots for homoscedesticity and linearity
+qplot(mod2small$fitted.values[,1] ,mod2small$residuals[,1]) + 
+  geom_hline(yintercept=0) + geom_jitter()
+qplot(mod2small$fitted.values[,2] ,mod2small$residuals[,2]) + 
+  geom_hline(yintercept=0) + geom_jitter()
+# these seem fine (put into appendix)
+
+## Independence of responses between students must be assumed
+@
+
+<<MultiCompCheck,echo=F,include=F,eval=F>>=
+## Make 95% intervals with Scheffe's Procedure to check if effects
+# Scheffe intevals: (estimate) +/- SCrit SE(estimate) 
+# where SCrit = sqrt((r-1)*F(.95; r-1, n-r-1)) r=number of comparisons , n=total sample size
+# for us, r = 2 , n-r-1 = 98
+SCrit = sqrt((2-1)*qf(.95,1,98))
+ests <- as.numeric(c(mod2smallCI$coef[4], mod2smallHT$coef[4]))
+SEests <- c(summary(mod2smallCI)[[4]][4,2], summary(mod2smallHT)[[4]][4,2])
+ScheffeInts <- data.frame(Betas = ests,
+                          Lower = ests - SCrit* SEests ,
+                          Upper = ests + SCrit* SEests)
+ScheffeInts
+### SCHEFFE'S DOESN'T WORK IN MANCOVA SETTING
+@
+
+<<AppliedModSelectDiag,echo=F,include=F,eval=T>>=
+### Build MANCOVA model for Applied scores for CI and HT
+## Backward Stepwise Selection Using AIC as selection criterion
+#start with biggest possible model
+mod1 <- lm(cbind(AppliedCI, AppliedHT)~midterm + Section + 
+             hw1perc +  hw2perc + hw3perc + hw4perc + hw5perc + hw6perc + hw7perc +
+             lab1perc +lab2perc +lab3perc +lab4perc +lab5perc +lab6perc + lab7perc +
+             room  , data=dat)
+summary(manova(mod1))
+#backward stepwise to reduce model
+mod1backward <- mStep(mod1, k=2, trace=TRUE) #k=2 means use AIC
+summary(manova(mod1backward))
+# it took out room, put it back in
+mod1small <- update(mod1backward, .~. + room)
+# hw7 and lab4 removed iteratively because pillai's not significant at .1 level
+# (process was check pillais, remove hw7, check pillais, remove lab4, check pillais)
+mod1small <- update(mod1small, .~. - hw7perc - lab4perc)
+summary(mod1small)
+manova(mod1small)
+summary(manova(mod1small))
+summarytab1 <- summary(manova(mod1small))$stats
+#significant overall effects: midterm, hw2
+#no overall effect of treatment
+mod1smallCI <- lm(AppliedCI~ midterm + hw2perc + room, data=dat)
+summary(mod1smallCI)
+mod1smallHT <- lm(AppliedHT~ midterm + hw2perc + room, data=dat)
+summary(mod1smallHT)
+
+#--------------------------------------------------
+### Check Conditions for MANCOVA linear model fit
+## check response correlations to avoid colinearity in multivariate model
+#Rule of Thumb: ~ .3 to .55 then MANCOVA will work well
+with(dat, cor(AppliedCI,AppliedHT)) #Not overly correlated
+
+## Normality of responses
+#qplot(dat$AppliedCI)
+#qplot(dat$AppliedHT)
+#CI reasonably normal univariately, HT not normal
+#qplot(dat$AppliedCI,dat$AppliedHT) + geom_jitter()
+# reasonable bivariate normal?
+
+## check residual plots for homoscedesticity and linearity
+qplot(mod1small$fitted.values[,1] ,mod1small$residuals[,1]) + 
+  geom_hline(yintercept=0) + geom_jitter()
+qplot(mod1small$fitted.values[,2] ,mod1small$residuals[,2]) + 
+  geom_hline(yintercept=0) + geom_jitter()
+# these seem fine (put into appendix)
+
+## Independence of responses between students must be assumed
+@
+
+%appendix-------------------------------------------------------
+\section{Final Exam Used in Curricula Study}
+\label{appendA}
+
+The following appendix contains the questions and point rubrics for the ARTIST scaled questions and the applied theory-based inference problems as they appeared on the final exam.
+
+\subsection{ARTIST Scaled Multiple Choice Question Set for Confidence Intervals}
+\label{appendA1}
+
+1. Answer the following general multiple choice questions regarding confidence intervals.  There is only one correct answer for each (circle the best option).
+
+i. Two different samples will be taken from the same population of test scores where the population mean and standard deviation are unknown. The first sample will have 25 data values, and the second sample will have 64 data values. A 95\% confidence interval will be constructed for each sample to estimate the population mean. Which confidence interval would you expect to have greater precision (a smaller width) for estimating the population mean?\\
+a. I expect the confidence interval based on the sample of 64 data values to be more precise.\\
+b. I expect both confidence intervals to have the same precision.\\
+c. I expect the confidence interval based on the sample of 25 data values to be more precise.\\
+
+ii. A 95\% confidence interval is computed to estimate the mean household income for a city. Which of the following values will definitely be within the limits of this confidence interval?\\
+a. The population mean\\
+b. The sample mean\\
+c. The standard deviation of the sample mean\\
+d. None of the above\\
+
+iii. Each of the 110 students in a statistics class selects a different random sample of 35 Quiz scores from a population of 5000 scores they are given. Using their data, each student constructs a 90\% confidence interval for $\mu$ the average Quiz score of the
+5000 students. Which of the following conclusions is correct?\\
+a. About 10\% of the sample means will not be included in the confidence intervals.\\
+b. About 90\% of the confidence intervals will contain $\mu$.\\
+c. It is probable that 90\% of the confidence intervals will be identical.\\
+d. About 10\% of the raw scores in the samples will not be found in these confidence intervals\\
+
+iv. A 95\% confidence interval for the mean reading achievement score for a population of third grade students is (43, 49). The margin of error of this interval is:\\
+a. 5\\
+b. 3\\
+c. 6\\
+
+v. Justin and Hayley conducted a mission to a new planet, Planet X, to study arm length. They took a random sample of 100 Planet X residents and calculated a 95\% confidence interval for the mean arm length. What does a 95\% confidence interval for arm length tell us in this case? Select the best answer:\\
+a. I am 95\% confident that this interval includes the sample mean (x) arm length.\\
+b. I am confident that most (95\%) of all Planet X residents will have an arm length within this interval.\\
+c. I am 95\% confident that most Planet X residents will have arm lengths within this interval.\\
+d. I am 95\% confident that this interval includes the population mean arm length.\\
+
+vi. Suppose that a random sample of 41 state college students is asked to measure the length of their right foot in centimeters. A 95\% confidence interval for the mean foot length for students at this university turns out to be (21.709, 25.091). If instead a 90\% confidence interval was calculated, how would it differ from the 95\% confidence interval?\\
+a. The 90\% confidence interval would be narrower.\\
+b. The 90\% confidence interval would be wider.\\
+c. The 90\% confidence interval would be the same as the 95\% confidence interval.\\
+
+vii. A pollster took a random sample of 100 students from a large university and computed a confidence interval to estimate the percentage of students who were planning to vote in the upcoming election. The pollster felt that the confidence interval was too wide to provide a precise estimate of the population parameter. What could the pollster have done to produce a narrower confidence interval that would produce a more precise estimate of the percentage of all university students who plan to vote in the upcoming election?\\
+a. Increase the sample size to 150.\\
+b. Increase the confidence level to 99\%.\\
+c. Both a and b\\
+d. None of the above\\
+
+viii. A newspaper article states with 95\% confidence that 55\% to 65\% of all high school students in the United States claim that they could get a hand gun if they wanted one. This confidence interval is based on a poll of 2000 high school students in Detroit. How would you interpret the confidence interval from this newspaper article?\\
+a. 95\% of large urban cities in the United States have 55\% to 65\% high school students who could get a hand gun.\\
+b. If we took many samples of high school students from different urban cities, 95\% of the samples would have between 55\% and 65\% high school students who could get hand guns.\\
+c. You cannot use this confidence interval to generalize to all teenagers in the United States because of the way the sample was taken.\\
+d. We can be 95\% confident that between 55\% and 65\% of all United States high school students could get a hand gun.\\
+
+ix. The Gallup poll (August 23, 2002) reported that 53\% of Americans said they would favor sending American ground troops to the Persian Gulf area in an attempt to remove Hussein from power. The poll also reported that the margin of error for this poll was 4\%. What does the margin of error of 4\% indicate?\\
+a. There is a 4\% chance that the estimate of 53\% is wrong.\\
+b. The percent of Americans who are in favor is probably higher than 53\% and closer to 57\%.\\
+c. The percent of Americans who are in favor is estimated to be between 49\% and 57\%.\\
+
+x. Suppose two researchers want to estimate the proportion of American college students who favor abolishing the penny. They both want to have about the same margin of error to estimate this proportion. However, Researcher 1 wants to estimate with 99\% confidence and Researcher 2 wants to estimate with 95\% confidence. Which researcher would need more students for her study in order to obtain the desired margin of error?\\
+a. Researcher 1.\\
+b. Researcher 2.\\
+c. Both researchers would need the same number of subjects.\\
+d. It is impossible to obtain the same margin of error with the two different confidence levels.\\
+
+\subsection{ARTIST Scaled Multiple Choice Question Set for Hypothesis Testing}
+
+2.   Answer the following general multiple choice questions regarding hypothesis testing.  There is only one correct answer for each (circle the best option).  As a helpful note the term ``statistically significant'' means that you reject the null hypothesis.
+
+i. The makers of Mini-Oats cereal have an automated packaging machine that is set to fill boxes with 24 ounces of cereal. At various times in the packaging process, a random sample of\\
+
+\noindent 100 boxes is taken to see if the machine is filling the boxes with an average of 24 ounces of cereal. Which of the following is a statement of the null hypothesis being tested?\\
+a. The machine is filling the boxes with the proper amount of cereal.\\
+b. The machine is not filling the boxes with the proper amount of cereal.\\
+c. The machine is not putting enough cereal in the boxes.\\
+
+ii. A research article gives a p-value of .001 in the analysis section. Which definition of a p-value is the most accurate?\\
+a. the probability that the observed outcome will occur again.\\
+b. the probability of observing an outcome as extreme or more extreme than the one observed if the null hypothesis is true.\\
+c. the value that an observed outcome must reach in order to be considered significant under the null hypothesis.\\
+d. the probability that the null hypothesis is true.\\
+
+iii. If a researcher was hoping to show that the results of an experiment were statistically significant they would prefer:\\
+a. a large p-value\\
+b. a small p-value\\
+c. p-values are not related to statistical significance\\
+
+
+iv. A researcher compares men and women on 100 different variables using a difference in means t-test.  He sets the level of significance at 0.05 and then carries out 100 independent t-tests (one for each variable) on these data.  If, for each test, the null hypothesis is actually true, about how many ``statistically significant'' results will be produced?\\
+a. 0\\
+b. 5\\
+c. 10\\
+d. none of the above\\
+
+Problems (v) and (vi) refer to the following situation: Food inspectors inspect samples of food products to see if they are safe. This can be thought of as a hypothesis test where Null: the food is safe, and Alternative: the food is not safe. Identify each of the following statements as a Type I or a Type II error.\\
+
+v. The inspector says the food is safe but it actually is not safe.\\
+a. Type I\\
+b. Type II\\
+
+vi. The inspector says the food is not safe but is actually safe.\\
+a. Type I\\
+b. Type II\\
+
+vii. A newspaper article claims that the average age for people who receive food stamps is 40 years. You believe that the average age is less than that. You take a random sample of 100 people who receive food stamps, and find their average age to be 39.2 years. You find that this is significantly lower than the age of 40 stated in the article (p-value < .05). What would be an appropriate interpretation of this result?\\
+a. The statistically significant result indicates that the majority of people who receive food stamps is younger than 40.\\
+b. Although the result is statistically significant, the difference in age is not of practical importance.\\
+c. An error must have been made. This difference is too small to be statistically significant.\\
+
+viii. A newspaper article stated that the US Supreme Court received 812 letters from around the country on the subject of whether to ban cameras from the courtroom. Of these 812 letters, 800 expressed the opinion that cameras should be banned. A statistics student was going to use this sample information to conduct a test of significance of whether more than 95\% of all American adults feel that cameras should be banned from the courtroom. What would you tell this student?\\
+a. This is a large enough sample to provide an accurate estimate of the American public's opinion on the issue.\\
+b. The necessary conditions for a test of significance are not satisfied, so no statistical test should be performed.\\
+c. With such a large number of people favoring the notion that cameras be banned, there is no need for a statistical test.\\
+
+ix. A researcher conducts an experiment on human memory and recruits 15 people to participate in her study. She performs the experiment and analyzes the results. She obtains a p-value of .17. Which of the following is a reasonable interpretation of her results?\\
+a. This proves that her experimental treatment has no effect on memory.\\
+b. There could be a treatment effect, but the sample size was too small to detect it.\\
+c. She should reject the null hypothesis.\\
+d. There is evidence of a small effect on memory by her experimental treatment.\\
+
+x. It is reported that scores on a particular test of historical trivia given to high school students are approximately normally distributed with a mean of 85. Mrs. Rose believes that her 5 classes of high school seniors will score significantly better than the national average on this test. At the end of the semester, Mrs. Rose administers the historical trivia test to her students. The students score an average of 89 on this test. After conducting the appropriate statistical test, Mrs. Rose finds that the p-value is .0025. Which of the following is the best interpretation of the p-value?\\
+a. A p-value of .0025 provides strong evidence that Mrs. Rose's class outperformed high school students across the nation.\\
+b. A p-value of .0025 indicates that there is a very small chance that Mrs. Rose's class outperformed high school students across the nation.\\
+c. A p-value of .0025 provides evidence that Mrs. Rose is an exceptional teacher who was able to prepare her students well for this national test.\\
+d. None of the above.\\
+
+
+\subsection{Applied Theory-Based Confidence Interval Question}
+
+3. Farmer Cindy is in charge of the chickens on her family's farm, and is curious about the average number of eggs the entire flock produces in a month.  Observing the entire flock would be time consuming, so she approaches you asking what her options are. You inform her that 30 chickens should be selected at random to be observed for a month. After the month she observes the average number of eggs her sample of 30 chickens produced is 25 eggs with a standard deviation of 6 eggs.  
+\begin{enumerate} 
+\item (5 pts) Construct a 95\% confidence interval for the average number of eggs chickens from her entire population produce in a month.  (You don't need to check any conditions here)  
+\item (3 pts) Interpret the 95\% confidence interval constructed in the previous part:
+\item (2 pts) Cindy is disappointed with the width of the interval you provide for her, suggest to her two ways she could obtain a narrower confidence interval.
+\end{enumerate}
+
+\subsection{Applied Theory-Based Hypothesis Testing Question}
+
+4. Cindy becomes concerned about a disease some of her chickens are catching that causes a decrease in the chicken's egg production.  She is interested in the proportion of her entire flock that has the disease, but detecting the disease requires taking blood from the chicken which is expensive and time consuming.  After working with you in the past, she understands that she can estimate this proportion by taking just a sample of her chickens! Assume she selects a sample of 100 chickens in the best possible way and observed that 15 of the chickens had the disease.
+
+Cindy's pessimistic guess is that 25\% of the flock has the disease.  Complete the following steps to test if the proportion of her entire population diseased is less than 0.25.\\
+\textbf{(a)} [2 points] State the Null and Alternative hypothesis:\\
+\textbf{(b)} [2 points] Check the conditions for a hypothesis test:\\
+\textbf{(c)} [2 points] Calculate the test statistic:\\
+\textbf{(d)} [2 points] Find the p-value:\\
+\textbf{(e)} [3 points] Make a decision about your hypothesis and state your conclusion in context of the problem.
+%-------------------------------------------------------
+\section{Appendix: Midterm Exam Used in Curricula Study}
+\label{appMidtermExamQuestions}
+
+The following appendix is the midterm exam in its entirety, along with point designations for each question.  Note that Problem 6 for the midterm is the ARTIST scaled question set for assessing topics related to "data collection". This ARTIST set was included with the goal to strengthen the midterm as a effective covariate for controlling for pre-treatment differences in the curricula groups in the model comparing learning outcomes using the ARTIST scores. 
+
+<<configForMidtermAppendix, echo=FALSE, include=FALSE >>=
+### Setting up R ###
+#load necessary packages
+#library(productplots)
+library(graphics)
+library(ggplot2)
+library(gridExtra)
+library(reshape)
+library(reshape2)
+library(plyr)
+
+#Wellbeing metrics
+wbmetric <- "thriving" ; wbperc <- 55
+
+#diamonds data for regression problem
+set.seed(12)
+index <- sample(1:nrow(diamonds),150)
+diamondsamp <- diamonds[index,c(1,7)]
+head(diamondsamp)
+
+# smoking and mortality data from DASL 
+# http://lib.stat.cmu.edu/DASL/Stories/SmokingandCancer.html
+  # smoking = rate of smoking in percentage of average male smoking
+  # Mortality = rate of lung cancer mortality in percentage of average male lung cancer mortality
+smokedie <- read.delim("smokedie.txt",header=T, )
+
+#Census data for sidebyside boxplot problem
+censussamp <- read.csv("CensusDataForExams.csv",header=T)
+censussamp$incinthous <- censussamp$inctot/1000
+censussamp$gender <- "Female" ; censussamp$gender[censussamp$sex==1] <- "Male"
+cenmale <- summary(censussamp[censussamp$gender=="Male", ]$inctot)
+cenfemale <- summary(censussamp[censussamp$gender=="Female", ]$inctot)
+
+#marraige role for problem 2
+mr2 <- "wife"
+mr1 <- "husband"
+
+#iris data for side by side boxplot problem
+liliris <- iris[iris$Species!="setosa",c(3,5)] #versionA
+#liliris <- iris[iris$Species!="virginica",c(3,5)] #versionB
+flower1 <- "Virginica" #VersionA
+#flower1 <- "Setosa" #VersionB
+flower2 <- "Versicolor"
+
+# Marble Example for Discrete RV Problem
+colornum <- c(10,8,3,2)
+colorpts <- c(2,5,10,15)
+totmarb <- sum(colornum)
+
+# Housing data for Univariate Numerical Variable Problem
+load("realestate.rda")
+realestate <- realestate[1:nrow(realestate), ]
+#Version A
+xl <- "Home Price (dollars)" ; yl <- "Count" 
+maintit <-"Histogram of Ames Home Prices"  ; homeattr <- "price"
+plotattr <- realestate$price ; binw <- 40000
+
+#Version B
+#xl <- "Home Floorspace (Square Feet)" ; yl <- "Count" 
+#maintit <-"Histogram of Ames Home Floorspaces" ; homeattr <- "floorspace in square feet"
+#plotattr <- realestate$sqft ; binw <- 300
+
+#nturns <- 11
+nturns <- 12
+@
+
+%---------------------------------------------------------------------
+
+\textbf{1. [28 points] Linear Regression:} A study was conducted in England in 1989 investigating the relationship between smoking and lung cancer mortality within different occupational groups of males. The data include a smoking index and a lung cancer mortality index for men in \Sexpr{nrow(smokedie)} occupational groups in England.
+
+The smoking index measures the percentage of the number of cigarettes smoked per day by men in the particular occupational group compared to the average number of cigarettes smoked per day by all men. The units associated with the smoking index are percent of average cigarettes smoked (\% avg CS).  The mortality index measures the percentage of the rate of deaths from lung cancer among men in the particular occupational group compared to the rate of deaths from lung cancer among all men. The units associated with the mortality index are percent of average lung cancer deaths (\% avg LCD).  
+
+The data for the \Sexpr{nrow(smokedie)} occupations are displayed in the scatterplot below. Use the information from the scatterplot, the sample statistics and linear regression equation listed below to answer all parts of this problem. \\
+
+<< 'regprobplot' , echo=FALSE, warning=FALSE, fig.width=6, fig.height=6, out.width='.5\\linewidth', fig.pos='h',fig.align='center'>>=
+mod1 <- lm(Mortality ~ Smoking, smokedie)
+#str(summary(mod1))
+int <- mod1$coefficients[1]
+slo <- mod1$coefficients[2]
+
+
+qplot(Smoking,Mortality, geom="point", data=smokedie) + geom_abline(intercept = int, slope = slo, size=I(1), colour=I("black"))+ ylab("Mortality (% avg LCD)") + xlab("Smoking (% avg CS)") + ggtitle("Scatterplot of Mortality Index by Smoking Index with Fitted Regression Line") + theme_bw()
+
+ybar1 <- round(mean(smokedie$Mortality),digits=4)
+xbar1 <- round(mean(smokedie$Smoking),digits=4)
+sy1 <- round(sd(smokedie$Mortality),digits=4)
+sx1 <- round(sd(smokedie$Smoking),digits=4)
+rsq1 <- round(summary(mod1)$r.squared, 4)-0.0001
+r1 <- round(sqrt(rsq1),4)
+@
+\begin{table}[hbtp]\centering 
+\begin{tabular}{ |c|c|c|}
+  \hline                        
+ $\bar{x}$ = \Sexpr{xbar1}\% avg CS & $\bar{y}$ = \Sexpr{ybar1}\% avg LCD & r=\Sexpr{r1}\\
+ $S_x$ = \Sexpr{sx1} \% avg CS & $S_y$ = \Sexpr{sy1}\% avg LCD & $R^2$ = \Sexpr{rsq1}\\
+  \hline  
+\end{tabular}
+\end{table}
+
+\begin{center}
+\textbf{Prediction Equation:} \hspace{.2in}  $\hat{y} = \Sexpr{int} + x(\Sexpr{slo})$
+\end{center}
+\noindent\textbf{(a)} [2 points] What is the response variable?\\
+\noindent\textbf{(b)} [2 points] What is the explanatory variable?\\
+\noindent\textbf{(c)} [4 points] The correlation coefficient, r=\Sexpr{r1}.  Using this value, what can be said about the relationship between the smoking index and the lung cancer mortality index?\\
+\noindent\textbf{(d)} [4 points] The slope of the linear regression model is \Sexpr{slo}. Show the calculations to prove that this is the value for the slope. Then, interpret this value in the context of the problem.\\
+\noindent\textbf{(e)} [4 points] The intercept of the linear regression model is \Sexpr{int}. First, show the calculations to prove that this is the value for the intercept. If it is appropriate to interpret this value in the context of the problem, then do so. Otherwise, specify why it is inappropriate to interpret this value.\\
+\noindent\textbf{(f)} [3 points] In the prediction equation for the regression line explain that the symbols $\hat{y}$ and x represent.\\
+\noindent\textbf{(g)} [3 points] Using the prediction line given above, predict the morality index (in \% avg LCD) for an occupational group that has a smoking index of 110\% avg CS (round your answer to 2 decimal places).\\
+\noindent\textbf{(h)} [3 points] Suppose that there was an occupational group in our data set with a smoking index of 110\% avg CS and a mortality index of 140\% avg LCD.  Calculate the residual for this occupational group (round your answer to 2 decimal places).\\
+\noindent\textbf{(i)} [3 points] Interpret the $R^2$ value in terms of the context of the problem.\\
+%--------------------------------------------------------------------------
+
+\textbf{2. [10 points]} A Gallup poll conducted on February 26, 2014 investigated the wellbeing of American adults. The survey used the Gallup-Healthways Well-Being Index to classify the person's wellbeing as "thriving", "struggling" or "suffering". The telephone survey found that \Sexpr{wbperc}\% of 1500 randomly selected American adults were classified as \Sexpr{wbmetric}.  \\
+For this study, identify the following:\\
+\noindent\textbf{(a)} [2 points] Identify the population of interest.\\
+\noindent\textbf{(b)} [2 points] Identify the sample.\\
+\noindent\textbf{(c)} [2 points] Identify the population parameter.\\
+\noindent\textbf{(d)} [2 points] Identify the sample statistic.\\
+\noindent\textbf{(e)} [2 points] Identify the variable.\\
+
+%--------------------------------------------------------------------------
+
+\textbf{3. [10  points]} A study investigated the relationship between heights of husbands and wives. Heights were recorded as groupings of "Tall", "Medium" and "Short". The researcher recorded height pairings for 205 married couples and wants to know how the height of the husband associated the height of the wife. Use the information found in the contingency table below to answer the questions that follow.
+\begin{table}[hbtp]\centering 
+\begin{tabular}{ |cc|ccc|c|}
+  \hline                        
+  & & & Wife & & \\
+  & & Tall & Medium & Short & Total \\
+ \hline
+          & Tall    & 18 & 28  & 14  & 60  \\
+Husband   & Medium  & 20 & 51  & 28  & 99  \\
+          & Short   & 12 & 25  & 9   &  46 \\
+  \hline  
+  & Total & 50 & 104 & 51 & 205 \\
+  \hline
+\end{tabular}
+\end{table}
+
+\noindent\textbf{(a)} [2  points] What is the probability that a randomly selected married couple will have a short \Sexpr{mr1}?\\
+\noindent\textbf{(b)} [2  points] What is the probability that a randomly selected married couple will have a tall \Sexpr{mr2} \textit{and} a short \Sexpr{mr1}?\\
+\noindent\textbf{(c)} [2  points] What is the probability that a randomly selected married couple will have a tall \Sexpr{mr2} \textit{or} a short \Sexpr{mr1}?\\
+\noindent\textbf{(d)} [2  points] What is the probability that a randomly selected married couple will have a short \Sexpr{mr1} \textit{given} that we know the \Sexpr{mr2} is tall?\\
+\noindent\textbf{(e)} [2  points] Are the events of short \Sexpr{mr1} and tall \Sexpr{mr2} \textit{independent}? Justify your answer mathematically.\\
+
+%--------------------------------------------------------------------------
+
+\textbf{4. [8 points]} Suppose that we have a box containing \Sexpr{totmarb} marbles of equal size and shape so that each marble is equally likely to be selected from the box.  There are \Sexpr{colornum[1]} red, \Sexpr{colornum[2]} green, \Sexpr{colornum[3]} yellow marbles and  \Sexpr{colornum[4]} black marbles.  Suppose we assign points to each color marble: \Sexpr{colorpts[1]} points for a red, \Sexpr{colorpts[2]} point for a green, \Sexpr{colorpts[3]} points for a yellow and \Sexpr{colorpts[4]} points for a black. Let X be the discrete random variable that counts the number of points that a randomly selected marble is worth.\\
+\noindent\textbf{(a)} [2 points] Find the probability distribution of X? (fill out table and round all values to 2 decimal places)\\
+\begin{table}[hbtp]\centering 
+\begin{tabular}{ c|c }
+x & P(x) \\
+  \hline  
+   &  \\
+   &  \\
+   &  \\  
+\end{tabular}
+\end{table}
+
+\noindent\textbf{(b)} [4 points] What 2 properties must be true for the values in the P(x) column of the probability distribution in part 4(a)? Note that X is a discrete random variable.\\
+\noindent\textbf{(c)} [2 points] What is the mean of X? (If you were unable to complete part 4(a), describe how you would find the mean) \\
+
+%---------------------------------------------------------------------
+
+\textbf{5. [10 points]} A survey on gender and income was conducted and a random sample of 3700 Adult U.S. residents was gathered. In the figure below are side-by-side boxplots of the income (in thousands of dollars) for male and female U.S. residents. Use this graphical display to answer the following questions.
+<< 'sidebysidebox' , echo=FALSE, warning=FALSE, fig.width=9, fig.height=4.5, out.width='.8\\linewidth', fig.pos='H',fig.align='center'>>=
+qplot(factor(gender), incinthous, data = censussamp, geom = "boxplot") + coord_flip() + xlab("Gender") + ylab("Income (in thousands of dollars)") + ggtitle("Side by Side Boxplots for Incomes") + theme_bw()
+@
+\begin{table}[H]\centering 
+\begin{tabular}{ |c||c|c||c|c|c|c|c|}
+  \hline                        
+Gender  & mean & sd & min & Q1 & median & Q3 & max \\
+ \hline
+ Male & 39319 & 54242 & -10000 & 12000 & 25600 & 46700 & 685000 \\
+ Female & 18786 & 21570 & -10000 & 4880 & 13500 & 25800 & 239000 \\
+  \hline
+\end{tabular}
+\end{table}
+\noindent\textbf{(a)} [5 points] Using full sentences, describe the distribution of income for \textit{only} the male residents of the U.S.  \\
+\noindent\textbf{(b)} [5 points] Using full sentences, compare the distribution of male and female distributions of income. A complete answer will compare shapes, centers and spreads. Be specific about which measures of center and spread are being used to make these comparisons. (ie writing "the spread is bigger" will not earn full credit)  \\
+
+%--------------------------------------------------------------------------
+
+\underline{\textbf{6. [18 points]} Multiple Choice: \textit{Clearly} circle the selected answer.}\\
+\noindent\textbf{(i)} [2 points] In a survey people are asked 'Which brand of toothpaste do you prefer?' The data gathered from this question would be what type of data? \\
+\indent a. continuous \\
+\indent b. categorical \\
+\indent c. quantitative 
+
+\textbf{Items ii and iii refer to the following situation:}
+A student is gathering data on the driving experiences of other college students. One of the variables measured is the type of car the student drives. These data are coded using the following method: 1 = subcompact, 2 = compact, 3 = standard size, 4 = full size, 5 = premium, 6 = mini van, 7 = SUV, and 8 = truck.
+
+\noindent\textbf{(ii)} [2 points] What type of variable is this? \\
+\indent  a. categorical \\
+\indent  b. quantitative \\
+\indent  c. continuous 
+
+\noindent\textbf{(iii)} [2 points] The student plans to see if there is a relationship between the number of speeding tickets a student gets in a year and the type of vehicle he or she drives. Identify the response variable in this study. \\
+\indent a. college students \\
+\indent b. type of car \\
+\indent c. number of speeding tickets \\
+\indent d. average number of speeding tickets last year 
+
+\noindent\textbf{(iv)} [2 points] A researcher is studying the relationship between a vitamin supplement and cholesterol level. What type of study needs to be done in order to establish that the amount of vitamin supplement causes a change in cholesterol level? \\
+\indent a. Survey \\
+\indent b. Randomized experiment \\
+\indent c. Time Series Study \\
+\indent d. Survey 
+
+\noindent\textbf{(v)} [2 points] An instructor is going to model an experiment in his statistics class by comparing the effect of 4 different treatments on student responses. There are 40 students in the class.
+is the best way for the instructor to distribute the students to the 4 treatments for this experiment? \\
+\indent a. Assign the first treatment to the first 10 students on the class list, the second treatment to the next 10 students, and so on. \\
+\indent b. Assign a unique number to each student, then use random numbers to assign 10 students to the first treatment, 10 students to the second treatment, and so on. \\
+\indent c. Assign the treatment as students walk into class, giving the first treatment to the first 10 students and the second treatment to the next 10 student, and so on. \\
+\indent d. All of these are equally appropriate methods. \\
+\indent e. None of these is an appropriate method.
+
+\textbf{Items vi and vii refer to the following situation:}\\
+Suppose two researchers wanted to determine if aspirin reduces the chance of a heart attack.
+
+\noindent\textbf{(vi)} [2 points] Researcher 1 studied the medical records of 500 randomly selected patients. For each patient, he recorded whether the person took aspirin every day and if the person had ever had a heart attack. Then he reported the percentage of heart attacks for the patients who took aspirin every day and for those who did not take aspirin every day. What type of study did Researcher 1 conduct? \\ 
+\indent a. Observational \\
+\indent b. Experimental \\
+\indent c. Survey \\
+\indent d. None of the above
+
+\noindent\textbf{(vii)} [2 points] Researcher 2 also studied 500 patients that visited a regional hospital in the last year. He randomly assigned half (250) of the patients to take aspirin every day and the other half to take a placebo everyday. Then after a certain length of time he reported the percentage of heart attacks for the patients who took aspirin every day and for those who did not take aspirin every day. What type of study did Researcher 2 conduct? \\ 
+\indent a. Observational \\
+\indent b. Experimental \\
+\indent c. Survey \\
+\indent d. None of the above 
+
+\noindent\textbf{(vii)} [2 points] The dean of a college would like to determine the feelings of students concerning a new registration fee that would be used to upgrade the recreational facilities on campus. All registered students would pay the fee each term. Which of the following data collection plans would provide the best representation of students' opinions at the school? \\
+\indent a. Survey every 10th student who enters the current recreational facilities between the hours of 1:00 and 5:00 pm until 100 students have been asked. \\
+\indent b. Randomly sample fifty student ID numbers and send a survey to all students in the sample. \\
+\indent c. Place an ad in the campus newspaper inviting students to complete an online survey. Collect the responses of the first 200 students who respond. \\
+\indent d. All of the above would be equally effective. 
+
+\noindent\textbf{(ix)} [2 points] A team in the Department of Institutional Review at a large university wanted to study the relationship between completing an internship during college and students' future earning potential. From the same graduating class, they selected a random sample of 80 students who completed an internship and 100 students who did not complete an internship and examined their salaries 5 years past graduation. They found that there was a statistically higher mean salary for the internship group than for the non-internship group. Which of the following interpretations do you think is the most appropriate?\\
+\indent a. More students should take internships because having an internship produces a higher salary.\\
+\indent b. There could be a confounding variable, such as student major, that explains the difference in mean salary between the internship and no internship groups. \\
+\indent c. You cannot draw any valid conclusions because the samples are not the same size.\\
+
+%--------------------------------------------------------------------------
+
+\textbf{7. [8 points]} When playing the game Settlers of Catan\textbf{TM} there is a game piece known as the robber that blocks resources from being obtained.  On each player's turn, that player rolls a pair of 6 sided dice.  If the sum of the dice roll equals 7 then that player may move the robber. This means that there is a 6/36 chance of moving the robber with every roll of the dice, because there are 6 of the 36 possible combinations that sum to 7. Let X count the number of times that one player moves the robber in \Sexpr{nturns} turns.\\
+\noindent\textbf{(a)} [4 points]  Check the 4 conditions to argue that X is a Binomial Random Variable  \\
+\noindent\textbf{(b)} [2 points]  What is the probability that a player gets to move the robber 2 times during the \Sexpr{nturns} turns?  \\
+\noindent\textbf{(c)} [2 points]  What is the mean number of times during \Sexpr{nturns} turns that a player will be able to move the robber?\\
+
+%-----------------------------------------------------------------------
+
+\textbf{8. [4 points]} A waiter from a restaurant keeps track of the information about tips he receives from dinning parties. Part of this data includes the tipping rate, as a proportion of the total bill, that was tipped. Below is a histogram of tipping rates from the 244 dinning parties served by the waiter. Use this histogram to answer the following question.
+<< 'tipratehisto' , echo=FALSE, warning=FALSE, fig.width=9, fig.height=3.5, out.width='.7\\linewidth', fig.pos='H',fig.align='center'>>=
+qplot(tip/total_bill, data=tips, binwidth=.04, xlim=c(0,.8)) + 
+  xlab("Tipping Rate (proportion of total bill)") + ylab("Count") + ggtitle("Histogram of Tipping Rates") + theme_bw()
+@
+\noindent\textbf{(a)} [2 points]  What is the best measure of center to describe the distribution of tipping rates? Explain your answer. (Note: no calculations or estimated values are needed to answer this problem)  \\
+\noindent\textbf{(b)} [2 points]  What is the best measure of spread to describe the distribution of tipping rates? Explain your answer. (Note: no calculations or estimated values are needed to answer this problem) \\
+
+%-----------------------------------------------------------------------
+
+\textbf{9. [4 points]} Below are histograms for two separate random samples of 30 quiz scores.  Which quiz will have the larger sample standard deviation for quiz scores? \textbf{Explain your choice briefly}. (Note: You do not, and should not, do any calculations to answer this question)
+\begin{figure}[H]
+\begin{center}
+\includegraphics[keepaspectratio=TRUE,width=.2\textwidth]{QuizScores1Version1.png}
+\includegraphics[keepaspectratio=TRUE,width=.2\textwidth]{QuizScores2Version1.png}
+\end{center}
+\end{figure}
+
+
+
+
+\end{document}
+
