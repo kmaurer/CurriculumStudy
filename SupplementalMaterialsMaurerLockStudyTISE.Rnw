@@ -26,9 +26,9 @@
 %opening
 
 \title{Comparison of Learning Outcomes for Simulation-Based and Traditional Inference Curricula in a Designed Educational Experiment}
-\author{Karsten Maurer \hspace{1in} Miami University \\
-        Dennis Lock \hspace{1in} Iowa State University}
-%\institute{K. Maurer \and D. Lock
+% \author{Karsten Maurer \hspace{1in} Miami University \\
+%         Dennis Lock \hspace{1in} Iowa State University}
+% \institute{K. Maurer \and D. Lock
 %        \at Iowa State University, Ames, IA, USA}
 
 \maketitle
@@ -59,7 +59,7 @@ dat$hw2perc <- dat$hw2perc * 100
 dat$treatment <- "Simulation-Based"
 dat$treatment[which(dat$room=="sweeney")] <- "Traditional"
 
-errorsummary2 <- read.csv("data/errorsummary2.csv")
+errorsummary2 <- read.csv("data/SimulationStudyErrorSummary.csv")
 
 
 

@@ -64,7 +64,7 @@
 \newcommand{\Reviewauthor}[1]{\def\@Reviewauthor{#1}}
 %% defaults
 %\author{ Author 1 \hspace{1in}  Author 2   \\ \hspace{.2in}  Institution \hspace{.8in} Institution }
-\author{ Karsten Maurer \hspace{1in}  Dennis Lock  \\ \hspace{.42in}  Miami University \hspace{1.15in} Iowa State University }
+% \author{ Karsten Maurer \hspace{1in}  Dennis Lock  \\ \hspace{.42in}  Miami University \hspace{1.15in} Iowa State University }
 \title{Supplemental Materials: \\ \large Comparison of Learning Outcomes for Simulation-Based and Traditional Inference Curricula in a Designed Educational Experiment}
 \Abstract{---!!!---an abstract is required---!!!---}
 \Plainauthor{\@author}
@@ -140,17 +140,17 @@
    {
        \def\and{\unskip\enspace{\rm and}\enspace}%
        \def\And{\end{tabular}\hss \egroup \hskip 1in plus 2fil
-          \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\ignorespaces}%
+          \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{4pt}\ignorespaces}%
        \def\AND{\end{tabular}\hss\egroup \hfil\hfil\egroup
           \vskip 0.1in plus 1fil minus 0.05in
           \hbox to \linewidth\bgroup\rule{\z@}{10pt} \hfil\hfil
-          \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\ignorespaces}
+          \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{4pt}\ignorespaces}
        \hbox to \linewidth\bgroup\rule{\z@}{10pt} \hfil\hfil
-       \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{24pt}\@author
+       \hbox to 0pt\bgroup\hss \begin{tabular}[t]{c}\large\bf\rule{\z@}{4pt}\@author
        \end{tabular}\hss\egroup
    \hfil\hfil\egroup}
    }
-   \vskip 0.3in minus 0.1in
+   \vskip 0.3in minus 0.01in
   }}
 %% sections, subsections, and subsubsections
 \newlength{\preXLskip}
